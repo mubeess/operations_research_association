@@ -1,0 +1,17 @@
+.button_container {
+  min-height: 32px;
+  min-width: 150px;
+  background-color: var(--primary);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button_container:hover {
+  opacity: 0.8;
+}
+.button_container span {
+  color: var(--white);
+}

@@ -1,0 +1,20 @@
+.app_input {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+}
+.app_input input {
+  border: none;
+  border-bottom: 1px solid var(--stroke);
+  height: 40px;
+  transition: all 0.2s;
+}
+.app_input input:hover {
+  border: none;
+  border-bottom: 1px solid var(--primary);
+}
+.app_input input:focus {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid var(--primary);
+}
