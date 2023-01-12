@@ -3,6 +3,7 @@ body {
   padding: 0px;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
+  overflow-x: hidden;
 }
 :root {
   --primary: #33745d;
@@ -29,9 +30,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  /* padding-bottom: 20px;
+  padding-top: 20px; */
+  
 }
 .auth_inner_container {
-  min-width: 70%;
+  width: 70%;
   min-height: 80vh;
   background-color: var(--white);
   border-radius: 10px;
@@ -39,6 +43,10 @@ body {
     -1px -1px 5px rgba(255, 255, 255, 0.5);
   display: flex;
   flex-direction: column;
+  padding-bottom: 10px;
+  overflow-x: hidden;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 .auth_container img {
   margin-left: auto;
@@ -47,9 +55,10 @@ body {
   margin-bottom: 33px;
 }
 .auth_container .inputs_container {
-  padding-left: 33px;
-  padding-right: 80px;
   display: flex;
   flex-direction: column;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
 

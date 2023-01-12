@@ -4,7 +4,11 @@ import Logo from "../assets/Images/or_logo.png";
 import { Header, RegularText } from "../components/Common";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import { useNavigate } from "react-router";
+
 function Login() {
+  const navigate = useNavigate();
+
   return (
     <div className="auth_container">
       <div className="auth_inner_container">
@@ -16,20 +20,33 @@ function Login() {
 
 "
           />
-          <Input placeholder="someone@example.com" label="Email Address" />
-          <Input label="Password" placeholder="type Password here..." />
+          <Input
+            type="email"
+            placeholder="someone@example.com"
+            label="Email Address"
+          />
+          <Input
+            type="password"
+            label="Password"
+            placeholder="type Password here..."
+          />
           <div className="forgot_password">
             <RegularText text="Forgot Password ?" />
             <span style={{ marginLeft: 10 }}>Reset It</span>
           </div>
           <Button
+            onClick={() => navigate("dashboard")}
             style={{
               width: 188,
               marginTop: 14,
             }}
             label="Continue"
           />
-          <Button lineButton label="Create an account" />
+          <Button
+            onClick={() => navigate("signup")}
+            lineButton
+            label="Create an account"
+          />
         </div>
       </div>
     </div>

@@ -1,3 +1,22 @@
 .forgot_password{
     margin-top: 20px;
 }
+.terms{
+    display: flex;
+    margin-top: 20px;
+}
+.terms input{
+    margin-right: 20px;
+    
+}
+.terms span a{
+    border-bottom: 1px solid black;
+    margin-right: 5px;
+    cursor: pointer;
+}
+.have_account{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
