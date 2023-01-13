@@ -18,6 +18,20 @@
   outline: none;
   border-bottom: 1px solid var(--primary);
 }
+.app_input select{
+  height: 41px;
+  border-radius: 10px;
+  padding-left:10px;
+  border: 1px solid var(--stroke);
+  background-color: var(--white);
+  font-size: 15px;
+  margin-top: 20px;
+}
+
+.app_input select:focus{
+  border: none;
+  outline: 1px solid var(--primary);
+}
 .app_input .input_label .asteric{
 color: var(--red);
 margin-left: 5px;

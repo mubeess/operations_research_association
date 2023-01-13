@@ -1,14 +1,15 @@
 import React from "react";
 import "./styles/input.css";
 import { RegularText } from "./Common";
-import { InputProps } from "./types";
-function Input({
+import { SelectProps } from "./types";
+function Select({
   label,
   placeholder,
   type = "text",
   required = false,
-  style
-}: InputProps) {
+  style,
+  options,
+}: SelectProps) {
   return (
     <div style={style} className="app_input">
       <div className="input_label">
@@ -23,9 +24,16 @@ function Input({
         {required ? <span className="asteric">*</span> : null}
       </div>
 
-      <input required={required} placeholder={placeholder} type={type} />
+      <select defaultValue={placeholder}>
+        <option value={placeholder}>{placeholder}</option>
+        {options.map((opt: string, index) => (
+          <option value={opt} key={opt}>
+            {opt}
+          </option>
+        ))}
+      </select>
     </div>
   );
 }
 
-export default Input;
+export default Select;
