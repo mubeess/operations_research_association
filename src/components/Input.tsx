@@ -7,7 +7,9 @@ function Input({
   placeholder,
   type = "text",
   required = false,
-  style
+  style,
+  disabled,
+  outlined,
 }: InputProps) {
   return (
     <div style={style} className="app_input">
@@ -23,7 +25,18 @@ function Input({
         {required ? <span className="asteric">*</span> : null}
       </div>
 
-      <input required={required} placeholder={placeholder} type={type} />
+      <input
+      disabled={disabled}
+        style={{
+          opacity: disabled ? 0.5 : 1,
+          backgroundColor:disabled?'var(--back_ground)':'var(--white)',
+          border: outlined ? "1px solid var(--stroke)" : "none",
+          borderRadius: outlined ? 10 : 0,
+        }}
+        required={required}
+        placeholder={placeholder}
+        type={type}
+      />
     </div>
   );
 }

@@ -13,6 +13,8 @@ export interface InputProps {
   type?: HTMLInputTypeAttribute;
   required?: boolean;
   style?:CSSProperties;
+  disabled?:boolean;
+  outlined?:boolean;
 }
 export interface SelectProps {
   label: string;

@@ -1,0 +1,16 @@
+.section1_container{
+margin-top: 30px;
+}
+.section1_container .main_container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 50px;
+    width: 70%;
+    background-color: var(--white);
+    padding: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+}
