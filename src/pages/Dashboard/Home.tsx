@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/home.css";
 import Button from "../../components/Button";
 import Section1 from "./components/Section1";
-
+import Section2 from "./components/Section2";
+import Section3 from "./components/Section3";
+const initialState = [{ id: "1" }];
 function Home() {
+  const [sect2Educatio, setSec2Ed] = useState(initialState);
   return (
     <div className="home_container">
-     {/* <Section0/> */}
-     <Section1/>
+      {/* <Section0/> */}
+      {/* <Section1/> */}
+      <Section2/>
+      <Section3/>
 
       <Button
         style={{

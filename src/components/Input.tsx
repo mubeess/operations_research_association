@@ -26,12 +26,16 @@ function Input({
       </div>
 
       <input
-      disabled={disabled}
+        disabled={disabled}
         style={{
           opacity: disabled ? 0.5 : 1,
-          backgroundColor:disabled?'var(--back_ground)':'var(--white)',
+          backgroundColor: disabled ? "var(--back_ground)" : "var(--white)",
           border: outlined ? "1px solid var(--stroke)" : "none",
+          borderBottom: outlined
+            ? "1px solid var(--stroke)"
+            : "1px solid var(--primary)",
           borderRadius: outlined ? 10 : 0,
+          padding:5
         }}
         required={required}
         placeholder={placeholder}
