@@ -1,0 +1,93 @@
+.final_container {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  padding-top: 20px;
+}
+.final_container .membership {
+  display: flex;
+  justify-content: space-between;
+}
+.membership .membership-number {
+  width: 30%;
+  min-height: 100px;
+  background-color: var(--white);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.membership .membership-detail {
+  width: 60%;
+  min-height: 40vh;
+  position: relative;
+  border-bottom: 3px solid var(--primary);
+  display: flex;
+ 
+  align-items: center;
+}
+.membership-detail .mem-bg{
+    background-color: rgba(46, 113, 89, 0.3);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+   opacity: 0.5;
+   position: absolute;
+   top: 0;
+   bottom: 0;
+   right: 0;
+   left: 0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.mem-bg img{
+    width: 80%;
+    height: 30vh;
+    opacity: 0.15;
+}
+.membership-detail .main-detal{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+}
+.membership-detail #passport{
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    margin-left: auto;
+}
+.main-detal .fields{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+
+}
+.fields span{
+    font-size: 18px;
+    text-align: left;
+}
+.membership-number .status{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 50px;
+    border-radius: 10px;
+    background-color: rgba(46, 113, 89, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 20px;
+}
+.status .status-val{
+    font-weight: bold;
+}
+.status span{
+    font-size: 18px;
+}
+.membership-number a{
+    margin-left: auto;
+    margin-top: 20px;
+}

@@ -6,7 +6,7 @@
 .app_input input {
   border: none;
   border-bottom: 1px solid var(--stroke);
-  height: 35px;
+  height: 25px;
   transition: all 0.2s;
 }
 .app_input input:hover {

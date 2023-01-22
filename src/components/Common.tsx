@@ -1,7 +1,7 @@
 import { TextProps } from "./types";
 
-export const Header = ({ text }: TextProps) => (
-  <span className="header">{text}</span>
+export const Header = ({ text,style }: TextProps) => (
+  <span style={style} className="header">{text}</span>
 );
 
 export const RegularText = ({ text, style }: TextProps) => (

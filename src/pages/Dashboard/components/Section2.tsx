@@ -4,18 +4,18 @@ import Input from "../../../components/Input";
 import AddButton from "../../../components/AddButton";
 import { Header } from "../../../components/Common";
 import DeleteButton from "../../../components/DeleteButton";
-interface initialStateProp{
-  initial:[any]|any
+interface initialStateProp {
+  initial: [any] | any;
 }
-const initalState:initialStateProp['initial']=[]
+const initalState: initialStateProp["initial"] = [];
 function Section2() {
-  const [listItem, setListItem] = useState(initalState)
+  const [listItem, setListItem] = useState(initalState);
   function onClick() {
     const newList = listItem.concat({ id: Date.now() });
     setListItem(newList);
   }
-  function onRemove(id:any) {
-    const newItem = listItem.filter((item:any)=>item.id!=id);
+  function onRemove(id: any) {
+    const newItem = listItem.filter((item: any) => item.id != id);
     setListItem(newItem);
   }
   return (
@@ -36,7 +36,7 @@ function Section2() {
           <Input outlined type="file" label="Qualification Obtained" />
           <AddButton onClick={onClick} />
         </div>
-        {listItem.map((item:any) => (
+        {listItem.map((item: any) => (
           <div className="sec2_inputs">
             <Input
               style={{
@@ -49,7 +49,7 @@ function Section2() {
             <Input outlined type="date" label="From" />
             <Input outlined type="date" label="To" />
             <Input outlined type="file" label="Qualification Obtained" />
-            <DeleteButton onClick={()=>onRemove(item.id)} />
+            <DeleteButton onClick={() => onRemove(item.id)} />
             {/* <AddButton onClick={onClick} /> */}
           </div>
         ))}

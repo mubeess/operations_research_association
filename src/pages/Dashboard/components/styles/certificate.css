@@ -1,0 +1,127 @@
+.certificate-container {
+  width: 70%;
+  min-height: 80vh;
+  background-color: white;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 20px;
+  border-radius: 10px;
+  border: 1px dashed var(--primary);
+  padding: 20px;
+  display: flex;
+  margin-bottom: 20px;
+}
+.certificate-container .cert-bar{
+    width: 35px;
+    min-height: 100%;
+    background-color: var(--primary);
+}
+.certificate-container .main-cert{
+    flex: 1;
+    background:url(../../../../assets/Images/or-bg.png);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.main-cert #logo{
+    height: 35px;
+    width: 170px;
+    margin-left: auto;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-bottom: 10px;
+
+}
+.main-cert #bg{
+    position: absolute;
+    width: 90%;
+    height: 70px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+#certify{
+    /* margin-left: auto; */
+}
+.certify{
+    width: 100%;
+    display: flex;
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-top: 20px;
+}
+.cert-name{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px dashed black;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+.other-txt{
+    margin-top: 10px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.other-txt .txt-dashed{
+    border-bottom: 1px dashed black;
+    font-weight: bold;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.certificate-container #desc{
+    text-align: justify;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+.certificate-container .cert-title{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+.cert-title span{
+    border-bottom: 1px solid black;
+}
+.cert-val{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+.cert-val .label{
+    margin-right: 20px;
+}
+
+.sign-qr{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.sign-qr .sign{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.sign img{
+    border-bottom: 1px solid black;
+    width: 100px;
+    height: 50px;
+}

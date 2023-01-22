@@ -24,6 +24,7 @@ export interface SelectProps {
   required?: boolean;
   style?:CSSProperties;
   options:Array<string>
+  disabled?:boolean;
 }
 
 export interface ButtonProps {

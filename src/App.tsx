@@ -6,7 +6,7 @@ import LayOut from "./pages/Dashboard/LayOut";
 import Home from "./pages/Dashboard/Home";
 import "./App.css";
 import Payment from "./pages/Dashboard/Payment";
-import Certificate from "./pages/Dashboard/Certificate";
+import CertificatePage from "./pages/Dashboard/CertificatePage";
 import Seminars from "./pages/Dashboard/Seminars";
 
 export default function App() {
@@ -17,7 +17,7 @@ export default function App() {
       <Route path="dashboard" element={<LayOut />}>
         <Route index element={<Home />} />
         <Route path="payment" element={<Payment />} />
-        <Route path="certificate" element={<Certificate />} />
+        <Route path="certificate" element={<CertificatePage />} />
         <Route path="seminars" element={<Seminars />} />
       </Route>
     </Routes>

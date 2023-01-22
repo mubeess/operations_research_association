@@ -3,20 +3,41 @@ import "./styles/section1.css";
 import Input from "../../../components/Input";
 import Select from "../../../components/Select";
 import { Header } from "../../../components/Common";
-function Section1() {
+import EditButton from "../../../components/EditButton";
+interface Section1Props {
+  overview?: boolean;
+}
+function Section1({ overview = false }: Section1Props) {
   return (
     <div className="section1_container">
-      <Header text="SECTION A: Personal Details"/>
-      <div className="main_container">
-        <Input outlined label="First Name" />
-        <Input outlined label="Last Name" />
-        <Input outlined label="Middle Name" />
-        <Input outlined label="D.O.B" type='date'/>
-        <Input placeholder="sample@mail.com" disabled outlined label="Email Address" style={{gridColumn:'1/3'}}/>
-        <Select label="Gender" options={['m','f']}/>
-        <Input outlined placeholder="+234" label="Phone NUmber"/>
-        <Select label="Zone" options={['f','d']}/>
-        <Select label="State" options={['d','d']}/>
+      <Header text="SECTION A: Personal Details" />
+      <div
+        style={{
+          width: overview ? "90%" : "70%",
+        }}
+        className="main_container"
+      >
+        <Input disabled={overview} outlined label="First Name" />
+        <Input disabled={overview} outlined label="Last Name" />
+        <Input disabled={overview} outlined label="Middle Name" />
+        <Input disabled={overview} outlined label="D.O.B" type="date" />
+        <Input
+          placeholder="sample@mail.com"
+          disabled
+          outlined
+          label="Email Address"
+          style={{ gridColumn: "1/3" }}
+        />
+        <Select disabled={overview} label="Gender" options={["m", "f"]} />
+        <Input
+          disabled={overview}
+          outlined
+          placeholder="+234"
+          label="Phone NUmber"
+        />
+        <Select disabled={overview} label="Zone" options={["f", "d"]} />
+        <Select disabled={overview} label="State" options={["d", "d"]} />
+        {overview && <EditButton/>}
       </div>
     </div>
   );

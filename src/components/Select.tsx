@@ -9,6 +9,7 @@ function Select({
   required = false,
   style,
   options,
+  disabled
 }: SelectProps) {
   return (
     <div style={style} className="app_input">
@@ -24,7 +25,9 @@ function Select({
         {required ? <span className="asteric">*</span> : null}
       </div>
 
-      <select defaultValue={placeholder}>
+      <select style={{
+        backgroundColor:disabled?'var(--back_ground)':'white'
+      }} disabled={disabled} defaultValue={placeholder}>
         <option value={placeholder}>{placeholder}</option>
         {options.map((opt: string, index) => (
           <option value={opt} key={opt}>
