@@ -54,6 +54,22 @@ function FinalStaus() {
           />
         </div>
       </div>
+      <div className="main-status">
+        <Header text="MEMBERSHIP NUMBER" />
+        <Header
+          style={{ color: "var(--red)", marginTop: 10 }}
+          text="applicaton under review"
+        />
+        <div className="status">
+          <span className="status-label">Status :</span>
+          <span className="status-val">Pending</span>
+        </div>
+        <div className="status">
+          <span className="status-label">Certificate Validity :</span>
+          <span className="status-val">Not Yet</span>
+        </div>
+        <a href="">Get certificate now</a>
+      </div>
     </div>
   );
 }
