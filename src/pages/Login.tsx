@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./styles/login.css";
 import Logo from "../assets/Images/or_logo.png";
 import { Header, RegularText } from "../components/Common";
