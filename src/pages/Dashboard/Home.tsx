@@ -57,12 +57,6 @@ function Home() {
   return (
     <div className="home_container">
       {<Conditional />}
-      {/* <Section0/> */}
-      {/* <Section1/> */}
-      {/* <Section2/>
-      <Section3/> */}
-      {/* <Overview/> */}
-      {/* <FinalStaus /> */}
       {currentIndex != 4 && (
         <Button
           onClick={() => {
