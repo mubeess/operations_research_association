@@ -6,22 +6,26 @@
 .payments-container .main-payments {
   width: 80%;
   min-height: 100px;
-  background-color:var(--white);
+  background-color: var(--white);
   margin-top: 30px;
   box-shadow: 2px 2px 4px 4 rgba(255, 255, 255, 0.5);
   padding: 10px 40px;
 }
-.main-payments table{
-    width: 100%;
-    margin-top: 30px;
+.main-payments table {
+  width: 100%;
+  margin-top: 30px;
 }
-table thead{
-text-align: left;
-background-color: lightgray;
+table thead {
+  text-align: left;
+  background-color: rgba(90, 143, 124, 0.5);
+  height: 32px;
+  text-align: center;
 }
-table tr{
-    background-color:rgba(107, 163, 102,0.4);
+table tr {
+  background-color: rgba(107, 163, 102, 0.4);
+  height: 32px;
+  text-align: center;
 }
-table tr:nth-child(even){
-    background-color: white;
+table tr:nth-child(even) {
+  background-color: rgba(243, 243, 243, 1);
 }
