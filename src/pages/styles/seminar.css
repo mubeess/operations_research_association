@@ -1,0 +1,104 @@
+.seminars_container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    padding: 20px;
+    width: 80%;
+}
+.seminars_container .event_container{
+    width: 90%;
+    height: 335px;
+    background-color: var(--white);
+    border-radius: 3px;
+    margin:0px auto;
+    display: flex;
+    flex-direction: column;
+}
+.event_container .event_detail{
+    width: 100%;
+    height: 200px;
+    background-color: white;
+    position: relative;
+}
+.event_detail .event_time{
+    width: 80%;
+    background-color: transparent;
+    min-height: 100%;
+    max-height: 100%;
+    margin-left: auto;
+    border-left: 1px solid var(--stroke);
+    padding: 10px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.event_time .event_location{
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+    position: relative;
+}
+.event_location img{
+    height: 20px;
+    width: 20px;
+}
+.event_detail .event_calender{
+    width: 90%;
+    height: 100px;
+    background-color:transparent;
+    position: absolute;
+    top: 0;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding-left: 10px;
+    padding-right: 10px;
+    justify-content: center;
+    align-items: center;
+    
+}
+.event_calender .event_cal_date{
+    width: 99px;
+    height: 88px;
+    background-color:#2E7159;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    color: var(--white);
+}
+.event_payment{
+    width: 100%;
+    background-color:transparent;
+    flex: 1;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    padding-right: 10px;
+}
+.payments_flow{
+    display: flex;
+    padding: 0px 20px;
+    justify-content: space-between;
+}
+.payments_flow .payment_button{
+    width: 120px;
+    height: 41px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    background-color: rgba(81, 113, 225, 1);
+    margin-top: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.payments_flow img{
+    width:60%;
+    margin-top: 5px;
+}
+
+.payment_button:hover{
+    opacity: 0.6;
+}

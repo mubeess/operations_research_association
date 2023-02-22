@@ -27,28 +27,30 @@ function Payment() {
               <th>Status</th>
             </thead>
 
-            <tr>
-              <td>1</td>
-              <td>000922jj</td>
-              <td>N3000</td>
-              <td>20/01/2023</td>
-              <td>Approved</td>
-            </tr>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>000922jj</td>
+                <td>N3000</td>
+                <td>20/01/2023</td>
+                <td>Approved</td>
+              </tr>
 
-            <tr>
-              <td>2</td>
-              <td>000922jj</td>
-              <td>N3000</td>
-              <td>20/01/2023</td>
-              <td>Approved</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>000922jj</td>
-              <td>N3000</td>
-              <td>20/01/2023</td>
-              <td>Approved</td>
-            </tr>
+              <tr>
+                <td>2</td>
+                <td>000922jj</td>
+                <td>N3000</td>
+                <td>20/01/2023</td>
+                <td>Approved</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>000922jj</td>
+                <td>N3000</td>
+                <td>20/01/2023</td>
+                <td>Approved</td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>
