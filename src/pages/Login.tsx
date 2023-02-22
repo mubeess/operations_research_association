@@ -5,10 +5,26 @@ import { Header, RegularText } from "../components/Common";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import { useNavigate } from "react-router";
-
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../redux/store";
+import { setUser } from "../redux/user/userSlice";
 function Login() {
   const navigate = useNavigate();
-
+  const user = useSelector((user: RootState) => user.user);
+  const dispatch = useDispatch();
+  // useEffect(()=>{
+  //  console.log(user,"+++")
+  //  dispatch(setUser({
+  //    user:{
+  //      firstName:'mubis',
+  //      lastName:'ibrahim',
+  //      email:'',
+  //      isLoggedIn:true,
+  //      token:''
+  //    }
+  //  }))
+  //  console.log(user.user,"myuser")
+  // },[])
   return (
     <div className="auth_container">
       <div className="auth_inner_container">
