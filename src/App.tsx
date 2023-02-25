@@ -8,12 +8,14 @@ import "./App.css";
 import Payment from "./pages/Dashboard/Payment";
 import CertificatePage from "./pages/Dashboard/CertificatePage";
 import Seminars from "./pages/Dashboard/Seminars";
+import Verify from "./pages/Verify";
 
 export default function App() {
   return (
     <Routes>
       <Route element={<Login />} path="/" />
       <Route element={<SignUp />} path="/signup" />
+      <Route element={<Verify/>} path="/verify/:token"/>
       <Route path="dashboard" element={<LayOut />}>
         <Route index element={<Home />} />
         <Route path="payment" element={<Payment />} />

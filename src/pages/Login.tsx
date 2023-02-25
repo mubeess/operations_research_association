@@ -15,17 +15,14 @@ function Login() {
   const navigate = useNavigate();
   const loading = useSelector((state: RootState) => state.loading);
   // const dispatch = useDispatch();
-  const myData=useFetch("/src/index.json")  
-  useEffect(() => {
-   if (myData) {
-     console.log(myData)
-   }
-  
-  
-  }, []);
+  // const myData = useFetch("/src/index.json");
+  // useEffect(() => {
+  //   if (myData) {
+  //     console.log(myData);
+  //   }
+  // }, []);
   return (
     <div className="auth_container">
-      {myData.loading && <h1>LOADING......</h1>}
       <div className="auth_inner_container">
         <img src={Logo} alt="logo" />
         <div className="inputs_container">
@@ -36,11 +33,13 @@ function Login() {
 "
           />
           <Input
+            onChange={() => {}}
             type="email"
             placeholder="someone@example.com"
             label="Email Address"
           />
           <Input
+            onChange={() => {}}
             type="password"
             label="Password"
             placeholder="type Password here..."

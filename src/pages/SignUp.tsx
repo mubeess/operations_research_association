@@ -7,17 +7,16 @@ import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import query from "../helpers/query";
 function Login() {
   const navigate = useNavigate();
   const [checked, setChecked] = useState(false);
   const validationSchema = Yup.object({
-    password: Yup.string()
-      .min(6, "Password must be more than six characters")
-      .required("Required"),
-    email: Yup.string().email("Invalid email address").required("Required"),
-    confirmPassword: Yup.string()
-      .min(6, "Password must be more than six characters")
-      .required("Required"),
+    password: Yup.string().min(6, "Password must be more than six characters"),
+    email: Yup.string().email("Invalid email address"),
+    // confirmPassword: Yup.string()
+    //   .min(6, "Password must be more than six characters")
+    //   .required("Required"),
   });
   const formik = useFormik({
     initialValues: {
@@ -25,10 +24,16 @@ function Login() {
       firstName: "",
       lastName: "",
       password: "",
-      confirmPassword: "",
+      // confirmPassword: "",
     },
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      console.log(values, "res");
+      const response = await query({
+        method: "POST",
+        url: "/users",
+        bodyData: values,
+      });
+      console.log(response, "res");
     },
     validationSchema,
   });
@@ -82,7 +87,7 @@ function Login() {
             label="Password"
             placeholder="********"
           />
-          <Input
+          {/* <Input
             error={
               formik.touched.confirmPassword && formik.errors.confirmPassword
                 ? formik.errors.confirmPassword
@@ -94,7 +99,7 @@ function Login() {
             type="password"
             label="Confirm Password"
             placeholder="********"
-          />
+          /> */}
           <div className="terms">
             <input
               checked={checked}

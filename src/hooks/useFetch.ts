@@ -11,9 +11,8 @@ function useFetch(url: string) {
       if (response.status == 200) {
         setResult({ success: true, data: data });
       }
-      setTimeout(() => {
-        setLoading(false);
-      }, 2000);
+
+      setLoading(false);
     } catch (err) {
       setResult({ success: false });
       setLoading(false);
