@@ -46,7 +46,7 @@ function Input({
         type={type}
         id={id}
         name={name}
-        onChange={(e) => onChange(e)}
+       
       />
       {error && (
         <div className="input_error">
@@ -58,3 +58,4 @@ function Input({
 }
 
 export default Input;
+// onChange={(e) => onChange(e)}

@@ -9,7 +9,7 @@ export interface TextProps {
 export interface InputProps {
   label: string;
   placeholder?: string;
-  onChange: (e:ChangeEvent) => void;
+  onChange?: (e:ChangeEvent) => void;
   type?: HTMLInputTypeAttribute;
   required?: boolean;
   style?:CSSProperties;
