@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 export interface UserState {
@@ -20,6 +20,7 @@ const initialState: UserState = {
     isLoggedIn: false,
   },
 };
+
 
 export const userSlice = createSlice({
   name: "user",

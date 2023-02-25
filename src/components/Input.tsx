@@ -10,6 +10,10 @@ function Input({
   style,
   disabled,
   outlined,
+  name,
+  id,
+  onChange,
+  error,
 }: InputProps) {
   return (
     <div style={style} className="app_input">
@@ -35,12 +39,20 @@ function Input({
             ? "1px solid var(--stroke)"
             : "1px solid var(--primary)",
           borderRadius: outlined ? 10 : 0,
-          padding:5
+          padding: 5,
         }}
         required={required}
         placeholder={placeholder}
         type={type}
+        id={id}
+        name={name}
+        onChange={(e) => onChange(e)}
       />
+      {error && (
+        <div className="input_error">
+          <span>{error}</span>
+        </div>
+      )}
     </div>
   );
 }

@@ -36,3 +36,7 @@
 color: var(--red);
 margin-left: 5px;
 }
+.input_error{
+  width: 100%;
+  color: red;
+}

@@ -1,4 +1,4 @@
-import React, { HTMLInputTypeAttribute } from "react";
+import React, { ChangeEvent, HTMLInputTypeAttribute } from "react";
 import { CSSProperties } from "styled-components";
 
 export interface TextProps {
@@ -9,12 +9,15 @@ export interface TextProps {
 export interface InputProps {
   label: string;
   placeholder?: string;
-  onChange?: () => void;
+  onChange: (e:ChangeEvent) => void;
   type?: HTMLInputTypeAttribute;
   required?: boolean;
   style?:CSSProperties;
   disabled?:boolean;
   outlined?:boolean;
+  id?:string;
+  name?:string;
+  error?:string;
 }
 export interface SelectProps {
   label: string;
@@ -32,6 +35,7 @@ export interface ButtonProps {
   onClick?: () => void;
   style?: CSSProperties;
   lineButton?: boolean;
+  disabled?:boolean;
 }
 
 export interface NavLinkProps {
