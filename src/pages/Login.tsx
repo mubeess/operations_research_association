@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./styles/login.css";
 import Logo from "../assets/Images/or_logo.png";
 import { Header, RegularText } from "../components/Common";
@@ -8,25 +8,24 @@ import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { setUser } from "../redux/user/userSlice";
+import axios from "axios";
+import { setLoading } from "../redux/user/loginSlice";
+import useFetch from "../hooks/useFetch";
 function Login() {
   const navigate = useNavigate();
-  const user = useSelector((user: RootState) => user.user);
-  const dispatch = useDispatch();
-  // useEffect(()=>{
-  //  console.log(user,"+++")
-  //  dispatch(setUser({
-  //    user:{
-  //      firstName:'mubis',
-  //      lastName:'ibrahim',
-  //      email:'',
-  //      isLoggedIn:true,
-  //      token:''
-  //    }
-  //  }))
-  //  console.log(user.user,"myuser")
-  // },[])
+  const loading = useSelector((state: RootState) => state.loading);
+  // const dispatch = useDispatch();
+  const myData=useFetch("/src/index.json")  
+  useEffect(() => {
+   if (myData) {
+     console.log(myData)
+   }
+  
+  
+  }, []);
   return (
     <div className="auth_container">
+      {myData.loading && <h1>LOADING......</h1>}
       <div className="auth_inner_container">
         <img src={Logo} alt="logo" />
         <div className="inputs_container">
