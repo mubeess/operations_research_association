@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/home.css";
 import Button from "../../components/Button";
 import Section1 from "./components/Section1";
@@ -8,11 +8,15 @@ import Overview from "./components/Overview";
 import FinalStaus from "./components/FinalStaus";
 import Section0 from "./components/Section0";
 import { Fade } from "react-awesome-reveal";
+import { useSelector } from "react-redux";
 const initialState = [{ id: "1" }];
 function Home() {
   const [sect2Educatio, setSec2Ed] = useState(initialState);
   const [currentIndex, setCurrent] = useState(0);
-
+  const user=useSelector(data=>data)
+ useEffect(()=>{
+ console.log(user,"==")
+ },[])
   function Conditional() {
     switch (currentIndex) {
       case 0:

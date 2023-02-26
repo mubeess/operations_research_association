@@ -10,6 +10,7 @@ import * as Yup from "yup";
 import query from "../helpers/query";
 import Loading from "../components/Loading";
 import Alert from "../components/Alert";
+import { Fade } from "react-awesome-reveal";
 function Login() {
   const navigate = useNavigate();
   const [checked, setChecked] = useState(false);
@@ -55,105 +56,107 @@ function Login() {
         bodyData: newValue,
       });
       setLoading(false);
-      setAlert(response.data.message)
+      setAlert(response.data.message);
       console.log(response, "res");
     },
     validationSchema,
   });
   return (
-    <div className="auth_container">
-      <Loading loading={loading} />
-      <Alert text={callTetx} />
-      <div className="auth_inner_container">
-        <img src={Logo} alt="logo" />
-        <div className="inputs_container">
-          <Header text="Sign up to ORIDSAN" />
-          <RegularText
-            text="To sign up, please type in the email address, Name and Confirm password
+    <Fade>
+      <div className="auth_container">
+        <Loading loading={loading} />
+        <Alert text={callTetx} />
+        <div className="auth_inner_container">
+          <img src={Logo} alt="logo" />
+          <div className="inputs_container">
+            <Header text="Sign up to ORIDSAN" />
+            <RegularText
+              text="To sign up, please type in the email address, Name and Confirm password
 
             "
-          />
-          <Input
-            error={
-              formik.touched.email && formik.errors.email
-                ? formik.errors.email
-                : ""
-            }
-            name="email"
-            id="email"
-            onChange={formik.handleChange}
-            required
-            type="email"
-            placeholder="someone@example.com"
-            label="Email Address"
-          />
-          <Input
-            name="firstName"
-            onChange={formik.handleChange}
-            label="First Name"
-            placeholder="Enter first name here."
-          />
-          <Input
-            name="lastName"
-            onChange={formik.handleChange}
-            label="Last Name"
-            placeholder="Enter your last name here"
-          />
-          <Input
-            error={
-              formik.touched.password && formik.errors.password
-                ? formik.errors.password
-                : ""
-            }
-            name="password"
-            onChange={formik.handleChange}
-            required
-            type="password"
-            label="Password"
-            placeholder="********"
-          />
-          <Input
-            error={
-              formik.touched.confirmPassword && formik.errors.confirmPassword
-                ? formik.errors.confirmPassword
-                : ""
-            }
-            name="confirmPassword"
-            onChange={formik.handleChange}
-            required
-            type="password"
-            label="Confirm Password"
-            placeholder="********"
-          />
-          <div className="terms">
-            <input
-              checked={checked}
-              onChange={(e) => {
-                setChecked(e.target.checked);
-              }}
-              type="checkbox"
             />
-            <span>
-              By clicking on Signup, you agree to our <a>Terms of Service</a>
-              and <a>policy & terms</a>
-            </span>
+            <Input
+              error={
+                formik.touched.email && formik.errors.email
+                  ? formik.errors.email
+                  : ""
+              }
+              name="email"
+              id="email"
+              onChange={formik.handleChange}
+              required
+              type="email"
+              placeholder="someone@example.com"
+              label="Email Address"
+            />
+            <Input
+              name="firstName"
+              onChange={formik.handleChange}
+              label="First Name"
+              placeholder="Enter first name here."
+            />
+            <Input
+              name="lastName"
+              onChange={formik.handleChange}
+              label="Last Name"
+              placeholder="Enter your last name here"
+            />
+            <Input
+              error={
+                formik.touched.password && formik.errors.password
+                  ? formik.errors.password
+                  : ""
+              }
+              name="password"
+              onChange={formik.handleChange}
+              required
+              type="password"
+              label="Password"
+              placeholder="********"
+            />
+            <Input
+              error={
+                formik.touched.confirmPassword && formik.errors.confirmPassword
+                  ? formik.errors.confirmPassword
+                  : ""
+              }
+              name="confirmPassword"
+              onChange={formik.handleChange}
+              required
+              type="password"
+              label="Confirm Password"
+              placeholder="********"
+            />
+            <div className="terms">
+              <input
+                checked={checked}
+                onChange={(e) => {
+                  setChecked(e.target.checked);
+                }}
+                type="checkbox"
+              />
+              <span>
+                By clicking on Signup, you agree to our <a>Terms of Service</a>
+                and <a>policy & terms</a>
+              </span>
+            </div>
+            <Button
+              disabled={!checked}
+              onClick={formik.handleSubmit}
+              style={{
+                width: 188,
+                marginTop: 14,
+              }}
+              label="Sign Up"
+            />
+            <div className="have_account">
+              <span>Already have an account ?</span>
+            </div>
+            <Button onClick={() => navigate("/")} lineButton label="Sign In" />
           </div>
-          <Button
-            disabled={!checked}
-            onClick={formik.handleSubmit}
-            style={{
-              width: 188,
-              marginTop: 14,
-            }}
-            label="Sign Up"
-          />
-          <div className="have_account">
-            <span>Already have an account ?</span>
-          </div>
-          <Button onClick={() => navigate("/")} lineButton label="Sign In" />
         </div>
       </div>
-    </div>
+    </Fade>
   );
 }
 
