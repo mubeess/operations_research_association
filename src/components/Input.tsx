@@ -14,6 +14,7 @@ function Input({
   id,
   onChange,
   error,
+  value,
 }: InputProps) {
   return (
     <div style={style} className="app_input">
@@ -30,6 +31,7 @@ function Input({
       </div>
 
       <input
+        value={value}
         disabled={disabled}
         style={{
           opacity: disabled ? 0.5 : 1,
