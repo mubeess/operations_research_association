@@ -1,0 +1,19 @@
+.loading{
+position: absolute;
+top: 0;
+right: 0;
+left: 0;
+bottom: 0;
+background-color:rgba(0, 0, 0, 0.5);
+z-index: 100;
+display: flex;
+justify-content: center;
+align-items: center;
+opacity: 0;
+pointer-events: none;
+transition: all 0.2s;
+}
+.loading.active{
+    opacity: 1;
+    pointer-events: all;
+}

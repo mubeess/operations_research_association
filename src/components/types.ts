@@ -18,6 +18,7 @@ export interface InputProps {
   id?:string;
   name?:string;
   error?:string;
+  value?:string;
 }
 export interface SelectProps {
   label: string;

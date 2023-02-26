@@ -8,15 +8,26 @@ import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import query from "../helpers/query";
+import Loading from "../components/Loading";
+import Alert from "../components/Alert";
 function Login() {
   const navigate = useNavigate();
   const [checked, setChecked] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [callTetx, setCallText] = useState("");
+
+  const setAlert = (text: string) => {
+    setCallText(text);
+    setTimeout(() => {
+      setCallText("");
+    }, 3000);
+  };
   const validationSchema = Yup.object({
-    password: Yup.string().min(6, "Password must be more than six characters"),
-    email: Yup.string().email("Invalid email address"),
-    // confirmPassword: Yup.string()
-    //   .min(6, "Password must be more than six characters")
-    //   .required("Required"),
+    password: Yup.string()
+      .min(6, "Password must be more than six characters")
+      .required(),
+    email: Yup.string().email("Invalid email address").required(),
+    confirmPassword: Yup.string().min(6, "Password must match").required(),
   });
   const formik = useFormik({
     initialValues: {
@@ -24,21 +35,35 @@ function Login() {
       firstName: "",
       lastName: "",
       password: "",
-      // confirmPassword: "",
+      confirmPassword: "",
     },
     onSubmit: async (values) => {
-      console.log(values, "res");
+      if (values.password !== values.confirmPassword) {
+        setAlert("Password must match");
+        return;
+      }
+      setLoading(true);
+      const newValue = {
+        email: values.email,
+        firstName: values.firstName,
+        lastName: values.lastName,
+        password: values.password,
+      };
       const response = await query({
         method: "POST",
         url: "/users",
-        bodyData: values,
+        bodyData: newValue,
       });
+      setLoading(false);
+      setAlert(response.data.message)
       console.log(response, "res");
     },
     validationSchema,
   });
   return (
     <div className="auth_container">
+      <Loading loading={loading} />
+      <Alert text={callTetx} />
       <div className="auth_inner_container">
         <img src={Logo} alt="logo" />
         <div className="inputs_container">
@@ -87,7 +112,7 @@ function Login() {
             label="Password"
             placeholder="********"
           />
-          {/* <Input
+          <Input
             error={
               formik.touched.confirmPassword && formik.errors.confirmPassword
                 ? formik.errors.confirmPassword
@@ -99,7 +124,7 @@ function Login() {
             type="password"
             label="Confirm Password"
             placeholder="********"
-          /> */}
+          />
           <div className="terms">
             <input
               checked={checked}
