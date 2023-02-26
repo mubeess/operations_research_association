@@ -10,6 +10,7 @@ function Payment() {
         <div className="payment-search">
           <Header text="Reference No/Transaction No/Email" />
           <Input
+            onChange={() => {}}
             label=""
             placeholder="Search by keywords"
             outlined
