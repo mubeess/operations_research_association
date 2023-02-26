@@ -30,6 +30,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   /* padding-bottom: 20px;
   padding-top: 20px; */
   
