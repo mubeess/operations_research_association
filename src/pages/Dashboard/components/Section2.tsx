@@ -23,7 +23,7 @@ function Section2() {
       <Header text="SECTION B: Educational Qualification" />
       <div className="section2_container">
         <div className="sec2_inputs">
-          <Input
+          <Input onChange={()=>{}}
             style={{
               width: "30%",
             }}
@@ -31,14 +31,14 @@ function Section2() {
             label="Institution Attend "
             placeholder="Enter the name of institution attend"
           />
-          <Input outlined type="date" label="From" />
-          <Input outlined type="date" label="To" />
-          <Input outlined type="file" label="Qualification Obtained" />
+          <Input onChange={()=>{}} outlined type="date" label="From" />
+          <Input onChange={()=>{}} outlined type="date" label="To" />
+          <Input onChange={()=>{}} outlined type="file" label="Qualification Obtained" />
           <AddButton onClick={onClick} />
         </div>
         {listItem.map((item: any) => (
           <div className="sec2_inputs">
-            <Input
+            <Input onChange={()=>{}}
               style={{
                 width: "30%",
               }}
@@ -46,9 +46,9 @@ function Section2() {
               label="Institution Attend "
               placeholder="Enter the name of institution attend"
             />
-            <Input outlined type="date" label="From" />
-            <Input outlined type="date" label="To" />
-            <Input outlined type="file" label="Qualification Obtained" />
+            <Input onChange={()=>{}} outlined type="date" label="From" />
+            <Input onChange={()=>{}} outlined type="date" label="To" />
+            <Input onChange={()=>{}} outlined type="file" label="Qualification Obtained" />
             <DeleteButton onClick={() => onRemove(item.id)} />
             {/* <AddButton onClick={onClick} /> */}
           </div>

@@ -21,10 +21,14 @@ function Overview() {
           <EditButton />
         </div>
       </div>
-      <Header style={{marginBottom:20}} text="SECTION B: Educational Qualification" />
+      <Header
+        style={{ marginBottom: 20 }}
+        text="SECTION B: Educational Qualification"
+      />
       <div className="review-2">
         <div className="sec2_inputs">
           <Input
+            onChange={() => {}}
             disabled
             style={{
               width: "30%",
@@ -33,12 +37,25 @@ function Overview() {
             label="Institution Attend "
             placeholder="Enter the name of institution attend"
           />
-          <Input disabled outlined type="date" label="From" />
-          <Input disabled outlined type="date" label="To" />
-          <Input disabled outlined type="file" label="Qualification Obtained" />
+          <Input
+            onChange={() => {}}
+            disabled
+            outlined
+            type="date"
+            label="From"
+          />
+          <Input onChange={() => {}} disabled outlined type="date" label="To" />
+          <Input
+            onChange={() => {}}
+            disabled
+            outlined
+            type="file"
+            label="Qualification Obtained"
+          />
         </div>
         <div className="sec2_inputs">
           <Input
+            onChange={() => {}}
             disabled
             style={{
               width: "30%",
@@ -47,12 +64,25 @@ function Overview() {
             label="Institution Attend "
             placeholder="Enter the name of institution attend"
           />
-          <Input disabled outlined type="date" label="From" />
-          <Input disabled outlined type="date" label="To" />
-          <Input disabled outlined type="file" label="Qualification Obtained" />
+          <Input
+            onChange={() => {}}
+            disabled
+            outlined
+            type="date"
+            label="From"
+          />
+          <Input onChange={() => {}} disabled outlined type="date" label="To" />
+          <Input
+            onChange={() => {}}
+            disabled
+            outlined
+            type="file"
+            label="Qualification Obtained"
+          />
         </div>
         <div className="sec2_inputs">
           <Input
+            onChange={() => {}}
             disabled
             style={{
               width: "30%",
@@ -61,13 +91,28 @@ function Overview() {
             label="Institution Attend "
             placeholder="Enter the name of institution attend"
           />
-          <Input disabled outlined type="date" label="From" />
-          <Input disabled outlined type="date" label="To" />
-          <Input disabled outlined type="file" label="Qualification Obtained" />
+          <Input
+            onChange={() => {}}
+            disabled
+            outlined
+            type="date"
+            label="From"
+          />
+          <Input onChange={() => {}} disabled outlined type="date" label="To" />
+          <Input
+            onChange={() => {}}
+            disabled
+            outlined
+            type="file"
+            label="Qualification Obtained"
+          />
         </div>
         <EditButton />
       </div>
-      <Header style={{marginBottom:20}} text="SECTION C: Upload supporting documents" />
+      <Header
+        style={{ marginBottom: 20 }}
+        text="SECTION C: Upload supporting documents"
+      />
       <div className="review-3">
         <div className="selected-doc">
           <Select
