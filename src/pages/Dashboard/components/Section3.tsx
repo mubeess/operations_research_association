@@ -32,7 +32,7 @@ function Section3() {
               label="Document type"
               options={["me", "me"]}
             />
-            <Input outlined type="file" label="Upload document" />
+            <Input onChange={()=>{}} outlined type="file" label="Upload document" />
             <div className="sec3_btn">
               <AddButton onClick={onClick} />
             </div>
@@ -50,7 +50,7 @@ function Section3() {
                 label="Document type"
                 options={["me", "me"]}
               />
-              <Input outlined type="file" label="Upload document" />
+              <Input onChange={()=>{}} outlined type="file" label="Upload document" />
               <div className="sec3_btn">
                 <DeleteButton onClick={() => onRemove(item.id)} />
               </div>

@@ -17,11 +17,21 @@ function Section1({ overview = false }: Section1Props) {
         }}
         className="main_container"
       >
-        <Input disabled={overview} outlined label="First Name" />
-        <Input disabled={overview} outlined label="Last Name" />
-        <Input disabled={overview} outlined label="Middle Name" />
-        <Input disabled={overview} outlined label="D.O.B" type="date" />
-        <Input
+        <Input onChange={()=>{
+          
+        }} disabled={overview} outlined label="First Name" />
+        <Input onChange={()=>{
+          
+        }} disabled={overview} outlined label="Last Name" />
+        <Input onChange={()=>{
+          
+        }} disabled={overview} outlined label="Middle Name" />
+        <Input onChange={()=>{
+          
+        }} disabled={overview} outlined label="D.O.B" type="date" />
+        <Input onChange={()=>{
+          
+        }}
           placeholder="sample@mail.com"
           disabled
           outlined
@@ -29,7 +39,9 @@ function Section1({ overview = false }: Section1Props) {
           style={{ gridColumn: "1/3" }}
         />
         <Select disabled={overview} label="Gender" options={["m", "f"]} />
-        <Input
+        <Input onChange={()=>{
+          
+        }}
           disabled={overview}
           outlined
           placeholder="+234"
