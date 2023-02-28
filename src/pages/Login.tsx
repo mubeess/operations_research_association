@@ -1,22 +1,23 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./styles/login.css";
 import Logo from "../assets/Images/or_logo.png";
 import { Header, RegularText } from "../components/Common";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import { useNavigate } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../redux/store";
+import { useDispatch } from "react-redux";
 import { setUser } from "../redux/user/userSlice";
-import axios from "axios";
-import { setLoading } from "../redux/user/loginSlice";
-import useFetch from "../hooks/useFetch";
 import * as Yup from "yup";
 import { Fade } from "react-awesome-reveal";
 import { useFormik } from "formik";
 import Loading from "../components/Loading";
 import query from "../helpers/query";
 import Alert from "../components/Alert";
+import {
+  setEducatioanlQualification,
+  setPersonalDetails,
+  setSupportingDocs,
+} from "../redux/user/userDetailSlice";
 function Login() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -55,7 +56,25 @@ function Login() {
               email: response.data.data.data.personalDetails.email,
               lastName: response.data.data.data.personalDetails.lastName,
               token: response.data.data.token,
+              isNew:
+                response.data.data.data.supportingDoc.length > 0 ? false : true,
             },
+          })
+        );
+        dispatch(
+          setPersonalDetails({
+            personalDetails: response.data.data.data.personalDetails,
+          })
+        );
+        dispatch(
+          setSupportingDocs({
+            supportingDocs: response.data.data.data.supportingDoc,
+          })
+        );
+        dispatch(
+          setEducatioanlQualification({
+            educationalQualification:
+              response.data.data.data.educationalQualification,
           })
         );
         navigate("/dashboard");
