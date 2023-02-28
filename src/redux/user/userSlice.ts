@@ -8,6 +8,7 @@ export interface UserState {
     email: string;
     token: string;
     isLoggedIn: boolean;
+    isNew:boolean;
   };
 }
 
@@ -18,6 +19,7 @@ const initialState: UserState = {
     email: "",
     token: "",
     isLoggedIn: false,
+    isNew:true
   },
 };
 
