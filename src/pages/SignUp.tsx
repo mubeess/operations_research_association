@@ -57,7 +57,7 @@ function Login() {
       });
       setLoading(false);
       setAlert(response.data.message);
-      console.log(response, "res");
+      formik.resetForm()
     },
     validationSchema,
   });
@@ -76,6 +76,7 @@ function Login() {
             "
             />
             <Input
+            value={formik.values.email}
               error={
                 formik.touched.email && formik.errors.email
                   ? formik.errors.email
@@ -90,18 +91,21 @@ function Login() {
               label="Email Address"
             />
             <Input
+            value={formik.values.firstName}
               name="firstName"
               onChange={formik.handleChange}
               label="First Name"
               placeholder="Enter first name here."
             />
             <Input
+            value={formik.values.lastName}
               name="lastName"
               onChange={formik.handleChange}
               label="Last Name"
               placeholder="Enter your last name here"
             />
             <Input
+            value={formik.values.password}
               error={
                 formik.touched.password && formik.errors.password
                   ? formik.errors.password
@@ -115,6 +119,7 @@ function Login() {
               placeholder="********"
             />
             <Input
+            value={formik.values.confirmPassword}
               error={
                 formik.touched.confirmPassword && formik.errors.confirmPassword
                   ? formik.errors.confirmPassword

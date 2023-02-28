@@ -4,10 +4,12 @@ import Input from "../../../components/Input";
 import Select from "../../../components/Select";
 import { Header } from "../../../components/Common";
 import EditButton from "../../../components/EditButton";
+import { useSelector } from "react-redux";
 interface Section1Props {
   overview?: boolean;
 }
 function Section1({ overview = false }: Section1Props) {
+  const user=useSelector(user=>user)
   return (
     <div className="section1_container">
       <Header text="SECTION A: Personal Details" />
@@ -38,7 +40,7 @@ function Section1({ overview = false }: Section1Props) {
           label="Email Address"
           style={{ gridColumn: "1/3" }}
         />
-        <Select disabled={overview} label="Gender" options={["m", "f"]} />
+        <Select onChange={()=>{}} disabled={overview} label="Gender" options={["m", "f"]} />
         <Input onChange={()=>{
           
         }}
@@ -47,8 +49,8 @@ function Section1({ overview = false }: Section1Props) {
           placeholder="+234"
           label="Phone NUmber"
         />
-        <Select disabled={overview} label="Zone" options={["f", "d"]} />
-        <Select disabled={overview} label="State" options={["d", "d"]} />
+        <Select onChange={()=>{}} disabled={overview} label="Zone" options={["f", "d"]} />
+        <Select onChange={()=>{}} disabled={overview} label="State" options={["d", "d"]} />
         {overview && <EditButton/>}
       </div>
     </div>

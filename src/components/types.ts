@@ -23,12 +23,13 @@ export interface InputProps {
 export interface SelectProps {
   label: string;
   placeholder?: string;
-  onChange?: () => void;
+  onChange: (e:ChangeEvent) => void;
   type?: HTMLInputTypeAttribute;
   required?: boolean;
   style?:CSSProperties;
   options:Array<string>
   disabled?:boolean;
+  id?:string
 }
 
 export interface ButtonProps {

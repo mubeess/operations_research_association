@@ -5,12 +5,14 @@ export interface UserDetailState {
   personalDetails?: {};
   supportingDocs?: {}[];
   educationalQualification?: {}[];
+  membership?: string;
 }
 
 const initialState: UserDetailState = {
   personalDetails: {},
   supportingDocs: [],
   educationalQualification: [],
+  membership: "",
 };
 
 export const loginSlice = createSlice({
@@ -29,6 +31,9 @@ export const loginSlice = createSlice({
     ) => {
       state.educationalQualification = action.payload.educationalQualification;
     },
+    setMembership: (state, action: PayloadAction<UserDetailState>) => {
+      state.membership = action.payload.membership;
+    },
   },
 });
 
@@ -37,6 +42,7 @@ export const {
   setPersonalDetails,
   setSupportingDocs,
   setEducatioanlQualification,
+  setMembership
 } = loginSlice.actions;
 
 export default loginSlice.reducer;
