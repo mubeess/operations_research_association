@@ -63,7 +63,7 @@ function Login() {
         );
         dispatch(
           setPersonalDetails({
-            personalDetails: response.data.data.data.personalDetails,
+            personalDetails: response.data.data.data.personalDetails
           })
         );
         dispatch(

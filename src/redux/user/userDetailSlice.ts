@@ -1,8 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
+
 export interface UserDetailState {
-  personalDetails?: {};
+  personalDetails?: {
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    dob?: string;
+    gender?: string;
+    phone?:string;
+    state?: string;
+    zone?:string;
+    password?:string;
+    _id?:string;
+  };
   supportingDocs?: {}[];
   educationalQualification?: {}[];
   membership?: string;
@@ -42,7 +54,7 @@ export const {
   setPersonalDetails,
   setSupportingDocs,
   setEducatioanlQualification,
-  setMembership
+  setMembership,
 } = loginSlice.actions;
 
 export default loginSlice.reducer;

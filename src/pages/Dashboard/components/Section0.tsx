@@ -18,7 +18,6 @@ function Section0() {
           membership: val.membership,
         })
       );
-      console.log(val)
     },
   });
   useEffect(()=>{
