@@ -9,14 +9,13 @@ import FinalStaus from "./components/FinalStaus";
 import Section0 from "./components/Section0";
 import { Fade } from "react-awesome-reveal";
 import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 const initialState = [{ id: "1" }];
 function Home() {
-  const [sect2Educatio, setSec2Ed] = useState(initialState);
-  const [currentIndex, setCurrent] = useState(0);
-  const user=useSelector(data=>data)
- useEffect(()=>{
- console.log(user,"==")
- },[])
+  const user = useSelector((state: RootState) => state.user);
+  // const data = useSelector((state: RootState) => state);
+  const [currentIndex, setCurrent] = useState(user.user.isNew ? 0 : 4);
+
   function Conditional() {
     switch (currentIndex) {
       case 0:
@@ -53,7 +52,7 @@ function Home() {
       default:
         return (
           <Fade>
-            <Section0 />
+            <FinalStaus />
           </Fade>
         );
     }
@@ -61,7 +60,7 @@ function Home() {
   return (
     <div className="home_container">
       {<Conditional />}
-      {currentIndex != 4 && (
+      {currentIndex != 4 && currentIndex != 3 && (
         <Button
           onClick={() => {
             setCurrent(currentIndex + 1);
@@ -70,7 +69,7 @@ function Home() {
             width: 100,
             marginTop: 20,
           }}
-          label={`${currentIndex==3?'Submit':'Next'}`}
+          label={`${currentIndex == 3 ? "Submit" : "Next"}`}
         />
       )}
     </div>

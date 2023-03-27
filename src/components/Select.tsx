@@ -9,7 +9,10 @@ function Select({
   required = false,
   style,
   options,
-  disabled
+  disabled,
+  onChange,
+  id,
+  name
 }: SelectProps) {
   return (
     <div style={style} className="app_input">
@@ -25,7 +28,7 @@ function Select({
         {required ? <span className="asteric">*</span> : null}
       </div>
 
-      <select style={{
+      <select name={name} id={id} onChange={(e)=>onChange(e)} style={{
         backgroundColor:disabled?'var(--back_ground)':'white'
       }} disabled={disabled} defaultValue={placeholder}>
         <option value={placeholder}>{placeholder}</option>

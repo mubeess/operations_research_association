@@ -9,6 +9,9 @@ export interface UserState {
     token: string;
     isLoggedIn: boolean;
     isNew:boolean;
+    status?:string;
+    membership?:string;
+    passport?:string;
   };
 }
 
@@ -19,7 +22,10 @@ const initialState: UserState = {
     email: "",
     token: "",
     isLoggedIn: false,
-    isNew:true
+    isNew:true,
+    status:'Pending',
+    membership:'none',
+    passport:'none'
   },
 };
 
