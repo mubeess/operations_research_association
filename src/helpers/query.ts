@@ -4,14 +4,21 @@ interface QueryParams {
   method: string;
   url: string;
   bodyData: {};
+  token?:string;
 }
-export default async function query({ method, url, bodyData }: QueryParams) {
+export default async function query({ method, url, bodyData,token='' }: QueryParams) {
+  let headers1={
+    "Content-Type": "application/json",
+    'x-auth-token':token
+  }
+  let headers2={
+    "Content-Type": "application/json"
+  }
+  const conditionalHeader=token?headers1:headers2
   try {
     const response = await fetch(`https://oridsan.fly.dev/api/v1${url}`, {
       method: method,
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers:conditionalHeader,
       body: JSON.stringify(bodyData),
     });
     const data = await response.json();

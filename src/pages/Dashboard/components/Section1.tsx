@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { useFormik } from "formik";
 import { setPersonalDetails } from "../../../redux/user/userDetailSlice";
+import Button from "../../../components/Button";
 interface Section1Props {
   overview?: boolean;
 }
@@ -24,10 +25,11 @@ function Section1({ overview = false }: Section1Props) {
   const formik = useFormik({
     initialValues,
     onSubmit: (val) => {
-      let copied = Object.assign({}, user.personalDetails)
-      delete copied.password
-      delete copied._id
+      let copied = Object.assign({}, user.personalDetails);
+      delete copied.password;
+      delete copied._id;
       const mergedValue = { ...copied, ...val };
+      console.log(mergedValue,'m')
       dispatch(
         setPersonalDetails({
           personalDetails: mergedValue,
@@ -36,9 +38,9 @@ function Section1({ overview = false }: Section1Props) {
     },
   });
   useEffect(() => {
-    return () => {
-      formik.handleSubmit();
-    };
+    // return () => {
+    //   formik.handleSubmit();
+    // };
   }, []);
   return (
     <div className="section1_container">
@@ -70,12 +72,13 @@ function Section1({ overview = false }: Section1Props) {
           label="Middle Name"
         />
         <Input
-          id="dob"
+          name="dob"
           onChange={formik.handleChange}
           disabled={overview}
           outlined
           label="D.O.B"
           type="date"
+          value={user.personalDetails && overview ? user.personalDetails.dob : formik.values.dob}
         />
         <Input
           value={user.personalDetails ? user.personalDetails.email : ""}
@@ -87,14 +90,16 @@ function Section1({ overview = false }: Section1Props) {
           style={{ gridColumn: "1/3" }}
         />
         <Select
-          id="gender"
+          placeholder={user.personalDetails ? user.personalDetails.gender : ""}
+          name="gender"
           onChange={formik.handleChange}
           disabled={overview}
           label="Gender"
           options={["m", "f"]}
         />
         <Input
-          id="phone"
+          value={user.personalDetails && overview ? user.personalDetails.phone : formik.values.phone}
+          name="phone"
           onChange={formik.handleChange}
           disabled={overview}
           outlined
@@ -102,20 +107,25 @@ function Section1({ overview = false }: Section1Props) {
           label="Phone NUmber"
         />
         <Select
-          id="zone"
+          placeholder={user.personalDetails ? user.personalDetails.zone : ""}
+          name="zone"
           onChange={formik.handleChange}
           disabled={overview}
           label="Zone"
           options={["f", "d"]}
         />
         <Select
-          id="state"
+          placeholder={user.personalDetails ? user.personalDetails.state : ""}
+          name="state"
           onChange={formik.handleChange}
           disabled={overview}
           label="State"
           options={["d", "d"]}
         />
         {overview && <EditButton />}
+        {!overview&&<Button onClick={()=>{
+          formik.handleSubmit()
+        }} label="Add Data"/>}
       </div>
     </div>
   );

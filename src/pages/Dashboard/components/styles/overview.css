@@ -35,7 +35,7 @@
 
 .review-2{
     width: 90%;
-    min-height: 30vh;
+    min-height: 10vh;
     background-color: var(--white);
     position: relative;
     padding-bottom: 50px;

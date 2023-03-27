@@ -75,4 +75,5 @@
     max-height: 40vh;
     overflow-y: scroll;
     min-height: 40vh;
+    background-color: white;
 }

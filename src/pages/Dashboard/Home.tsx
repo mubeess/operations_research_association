@@ -13,8 +13,8 @@ import { RootState } from "../../redux/store";
 const initialState = [{ id: "1" }];
 function Home() {
   const user = useSelector((state: RootState) => state.user);
+  // const data = useSelector((state: RootState) => state);
   const [currentIndex, setCurrent] = useState(user.user.isNew ? 0 : 4);
- 
 
   function Conditional() {
     switch (currentIndex) {
@@ -60,7 +60,7 @@ function Home() {
   return (
     <div className="home_container">
       {<Conditional />}
-      {currentIndex != 4 && (
+      {currentIndex != 4 && currentIndex != 3 && (
         <Button
           onClick={() => {
             setCurrent(currentIndex + 1);
