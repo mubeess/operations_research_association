@@ -72,3 +72,28 @@ body {
   width: 100vw;
   position: relative;
 }
+@media only screen and (max-width: 767px) {
+  .auth_inner_container {
+    width: 95%;
+    min-height: 80vh;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px rgba(255, 255, 255, 0.5),
+      -1px -1px 5px rgba(255, 255, 255, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px;
+    overflow-x: hidden;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  .auth_container .inputs_container {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+}
