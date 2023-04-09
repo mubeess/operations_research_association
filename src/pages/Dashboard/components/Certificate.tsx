@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./styles/certificate.css";
 import Logo from "../../../assets/Images/or_logo.png";
 import Sign from "../../../assets/Images/sign.png";
@@ -7,6 +7,7 @@ import Certify from "../../../assets/Images/cert.png";
 import Bg from '../../../assets/Images/or-bg.png'
 import { Header } from "../../../components/Common";
 function Certificate() {
+ 
   return (
     <div className="certificate-container">
       <div className="cert-bar"></div>
