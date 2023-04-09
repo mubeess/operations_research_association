@@ -1,7 +1,7 @@
 {
     "rewrites":[{"source":"(.*)","destination":"/"}],
     "build": {
-        "src": "src/index.ts",
+        "src": "index.ts",
         "command": "npm run build",
         "output": "dist"
       }
