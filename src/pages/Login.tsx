@@ -51,7 +51,6 @@ function Login() {
         setAlert("");
       }, 3000);
       if (response.success) {
-       
         console.log(response.data.data.data.personalDetails, "personal");
         dispatch(
           setUser({
@@ -68,6 +67,15 @@ function Login() {
               passport: response.data.data.data.personalDetails.passport
                 ? response.data.data.data.personalDetails.passport.secureUrl
                 : "",
+              paid:
+                response.data.data.data.certificateStatus == "Unpaid"
+                  ? false
+                  : true,
+              rawPassword: values.password,
+              cert:
+                response.data.data.data.certificateStatus == "Unpaid"
+                  ? null
+                  : response.data.data.certificate,
             },
           })
         );
@@ -88,6 +96,7 @@ function Login() {
           })
         );
         navigate("/dashboard");
+        console.log(response, "res");
       }
     },
     validationSchema,

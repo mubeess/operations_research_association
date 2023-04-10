@@ -6,8 +6,10 @@ import Qr from "../../../assets/Images/qr.png";
 import Certify from "../../../assets/Images/cert.png";
 import Bg from '../../../assets/Images/or-bg.png'
 import { Header } from "../../../components/Common";
-function Certificate() {
- 
+function Certificate({data}) {
+ useEffect(()=>{
+ console.log(data,'cert')
+ },[])
   return (
     <div className="certificate-container">
       <div className="cert-bar"></div>
@@ -30,17 +32,17 @@ function Certificate() {
               right: 0,
               marginRight: 30,
             }}
-            text="NO:85634"
+            text={`NO:${data.cert.certificateNumber}`}
           />
         </div>
         <div className="cert-name">
-          <Header text="UMAR MUHAMMAD MODIBBO" />
+          <Header text={`${data.firstName} ${data.lastName}`} />
         </div>
         <div className="other-txt">
           <span>was on this day</span>
-          <span className="txt-dashed">20th Jan, 2023</span>
+          <span className="txt-dashed">{`${data.cert.createdAt}`}</span>
           <span>admitted to the grade of</span>
-          <span className="txt-dashed">Associate Fellow</span>
+          <span className="txt-dashed">{`${data.membership}`}</span>
         </div>
         <span id="desc">
           in accordance with the provisions of the articles of the Operation
@@ -52,11 +54,11 @@ function Certificate() {
         </div>
         <div className="cert-val">
             <span className="label">MEMBERSHIP NO:</span>
-            <Header text="AF/21/18017"/>
+            <Header text={`${data.cert.certificateNumber}`}/>
         </div>
         <div className="cert-val">
             <span className="label">Validity:</span>
-            <Header text="DEC 2029"/>
+            <Header text={`${data.cert.validity}`}/>
         </div>
 
         <div className="sign-qr">

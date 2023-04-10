@@ -13,6 +13,8 @@ export interface UserState {
     membership?:string;
     passport?:string;
     paid?:boolean;
+    rawPassword?:string;
+    cert?:any
   };
 }
 
@@ -27,7 +29,9 @@ const initialState: UserState = {
     status:'Pending',
     membership:'none',
     passport:'none',
-    paid:false
+    paid:false,
+    rawPassword:'',
+    cert:null
   },
 };
 
