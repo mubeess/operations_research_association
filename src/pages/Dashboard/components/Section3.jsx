@@ -13,11 +13,11 @@ import { useDispatch } from "react-redux";
 import { setSupportingDocs } from "../../../redux/user/userDetailSlice";
 import Loading from "../../../components/Loading";
 
-function Section3({gotoNext}) {
+function Section3({ gotoNext }) {
   // const [listItem, setListItem] = useState(initalState);
   const [imagesArray, setImages] = useState([]);
   const [alertText, setAlert] = useState("");
-  const [loading,setLoading]=useState(false)
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -34,11 +34,12 @@ function Section3({gotoNext}) {
   const formik = useFormik({
     initialValues,
     onSubmit: (val) => {
-      console.log(val,'-----');
-      dispatch(setSupportingDocs({
-        supportingDocs:val.documents
-      }));
-      
+      console.log(val, "-----");
+      dispatch(
+        setSupportingDocs({
+          supportingDocs: val.documents,
+        })
+      );
     },
   });
   useEffect(() => {
@@ -49,120 +50,127 @@ function Section3({gotoNext}) {
 
   return (
     <>
-    <div className="section3_main">
-    <Loading loading={loading}/>
-      <Alert text={alertText} />
-      <FormikProvider value={formik}>
-        <Header text="SECTION C: Upload supporting documents" />
-        <>
-          <FieldArray
-            name="documents"
-            render={(arrayHelpers) => (
-              <div className="sec3_container">
-                {formik.values.documents.length > 0 &&
-                  formik.values.documents.map((doc, index) => {
-                    return (
-                      <div key={index.toString()} className="sec3_inputs">
-                        <div className="sec2_inputs">
-                          <Select
-                           {...formik.getFieldProps(
-                            `documents.${index}.docType`
-                          )}
-                          id={`documents.${index}.docType`}
-                          name={`documents.${index}.docType`}
-                            onChange={formik.handleChange}
-                            style={{ width:window.innerWidth>746? "15%":'100%' }}
-                            placeholder="Select Doc"
-                            label="Document type"
-                            options={["Degree Cert", "Msc Cert", "Phd Cert"]}
-                          />
-                          <Input
-                            onChange={(e) => {
-                              setLoading(true)
-                              const formData = new FormData();
-                              const files = e.target.files;
-                              files?.length &&
-                                formData.append("file", files[0]);
-                                console.log(files[0])
-
-                              // const response= await query({url:'/file',method:'POST',bodyData:formData})
-                              fetch("https://oridsan.fly.dev/api/v1/file", {
-                                method: "POST",
-                                body: formData,
-                              })
-                                .then((response) => response.json())
-                                .then((data) => {
-                                  if (data.success) {
-                                    formik.values.documents[
-                                      `${index}`
-                                    ].doc.publicID = data.data.publicID;
-                                    formik.values.documents[
-                                      `${index}`
-                                    ].doc.secureUrl = data.data.secureUrl;
-                                    setImages((prev) => [
-                                      ...prev,
-                                      data.data.secureUrl,
-                                    ]);
-                                  }
-                              
-                                  setAlert(data.message);
-                                  setTimeout(() => {
-                                    setAlert("");
-                                  }, 2000);
+      <div className="section3_main">
+        <Alert text={alertText} />
+        <FormikProvider value={formik}>
+          <Header text="SECTION C: Upload supporting documents" />
+          <Loading loading={loading} />
+          <>
+            <FieldArray
+              name="documents"
+              render={(arrayHelpers) => (
+                <div className="sec3_container">
+                  {formik.values.documents.length > 0 &&
+                    formik.values.documents.map((doc, index) => {
+                      return (
+                        <div key={index.toString()} className="sec3_inputs">
+                          <div className="sec2_inputs">
+                            <Select
+                              {...formik.getFieldProps(
+                                `documents.${index}.docType`
+                              )}
+                              id={`documents.${index}.docType`}
+                              name={`documents.${index}.docType`}
+                              onChange={formik.handleChange}
+                              style={{
+                                width: window.innerWidth > 746 ? "15%" : "100%",
+                              }}
+                              placeholder="Select Doc"
+                              label="Document type"
+                              options={["Degree Cert", "Msc Cert", "Phd Cert"]}
+                            />
+                            <Input
+                              onChange={(e) => {
+                                const formData = new FormData();
+                                const files = e.target.files;
+                                files?.length &&
+                                  formData.append("file", files[0]);
+                                console.log(files[0]);
+                                setLoading(true);
+                                // const response= await query({url:'/file',method:'POST',bodyData:formData})
+                                fetch("https://oridsan.fly.dev/api/v1/file", {
+                                  method: "POST",
+                                  body: formData,
                                 })
-                                .catch((error) => {
-                                  console.error("Error uploading file:", error);
-                                });
-                                setLoading(false)
-                            }}
-                            outlined
-                            type="file"
-                            label="Upload document"
-                          />
-                          <div className="sec3_btn">
-                            {index == formik.values.documents.length - 1 ? (
-                              <AddButton
-                                onClick={() =>
-                                  arrayHelpers.push({
-                                    docType: "",
-                                    doc: {
-                                      secureUrl: "",
-                                      publicID: "",
-                                    },
+                                  .then((response) => response.json())
+                                  .then((data) => {
+                                    if (data.success) {
+                                      formik.values.documents[
+                                        `${index}`
+                                      ].doc.publicID = data.data.publicID;
+                                      formik.values.documents[
+                                        `${index}`
+                                      ].doc.secureUrl = data.data.secureUrl;
+                                      setImages((prev) => [
+                                        ...prev,
+                                        data.data.secureUrl,
+                                      ]);
+                                    }
+                                    setLoading(false);
+                                    setAlert(data.message);
+                                    setTimeout(() => {
+                                      setAlert("");
+                                    }, 2000);
                                   })
-                                }
-                              />
-                            ) : (
-                              <DeleteButton
-                                onClick={() => arrayHelpers.remove(index)}
-                              />
-                            )}
+                                  .catch((error) => {
+                                    setLoading(false);
+                                    console.error(
+                                      "Error uploading file:",
+                                      error
+                                    );
+                                  });
+                                
+                              }}
+                              outlined
+                              type="file"
+                              label="Upload document"
+                            />
+                            <div className="sec3_btn">
+                              {index == formik.values.documents.length - 1 ? (
+                                <AddButton
+                                  onClick={() =>
+                                    arrayHelpers.push({
+                                      docType: "",
+                                      doc: {
+                                        secureUrl: "",
+                                        publicID: "",
+                                      },
+                                    })
+                                  }
+                                />
+                              ) : (
+                                <DeleteButton
+                                  onClick={() => arrayHelpers.remove(index)}
+                                />
+                              )}
+                            </div>
                           </div>
+                          {imagesArray.length >= index + 1 && (
+                            <div className="sec3_img">
+                              <img src={imagesArray[index]} alt="img" />
+                            </div>
+                          )}
                         </div>
-                        {imagesArray.length >= index + 1 && (
-                          <div className="sec3_img">
-                            <img src={imagesArray[index]} alt="img" />
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                 
-              </div>
-            )}
-          />
-        </>
-        
-      </FormikProvider>
-    </div>
-     <Button style={{
-       width:70,
-       marginTop:20,
-       marginLeft:10
-     }} onClick={()=>{
-      formik.handleSubmit()
-      gotoNext()
-    }} label="Next"/>
+                      );
+                    })}
+                </div>
+              )}
+            />
+          </>
+        </FormikProvider>
+      </div>
+      <Button
+        style={{
+          width: 70,
+          marginTop: 20,
+          marginLeft: 10,
+        }}
+        onClick={() => {
+          formik.handleSubmit();
+          gotoNext();
+        }}
+        label="Next"
+      />
     </>
   );
 }

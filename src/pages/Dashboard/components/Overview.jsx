@@ -17,16 +17,72 @@ import {
   setPersonalDetails,
   setSupportingDocs,
 } from "../../../redux/user/userDetailSlice";
+import { useState } from "react";
+import Loading from "../../../components/Loading";
+import Alert from "../../../components/Alert";
 
 function Overview() {
   const data = useSelector((state) => state);
+  const [loading, setLoading] = useState(false);
+  const [alertMsg, setAlert] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  useEffect(() => {
-    console.log(data, "my-data");
-  }, []);
+  const login = async (values) => {
+    setLoading(true);
+    const response = await query({
+      method: "POST",
+      url: "/users/login",
+      bodyData: values,
+    });
+    setLoading(false);
+    setAlert("Application Submitted");
+    setTimeout(() => {
+      setAlert("");
+    }, 3000);
+    if (response.success) {
+      dispatch(
+        setUser({
+          user: {
+            isLoggedIn: true,
+            firstName: response.data.data.data.personalDetails.firstName,
+            email: response.data.data.data.personalDetails.email,
+            lastName: response.data.data.data.personalDetails.lastName,
+            token: response.data.data.token,
+            isNew:
+              response.data.data.data.supportingDoc.length > 0 ? false : true,
+            membership: response.data.data.data.membershipCat,
+            status: response.data.data.data.status,
+            passport: response.data.data.data.personalDetails.passport
+              ? response.data.data.data.personalDetails.passport.secureUrl
+              : "",
+            paid: false,
+          },
+        })
+      );
+      dispatch(
+        setPersonalDetails({
+          personalDetails: response.data.data.data.personalDetails,
+        })
+      );
+      dispatch(
+        setSupportingDocs({
+          supportingDocs: response.data.data.data.supportingDoc,
+        })
+      );
+      dispatch(
+        setEducatioanlQualification({
+          educationalQualification:
+            response.data.data.data.educationalQualification,
+        })
+      );
+      navigate("/dashboard/certificate");
+    }
+  };
+
   return (
     <div className="overview-container">
+      <Loading loading={loading} />
+      <Alert text={alertMsg} />
       <Header text="Summary Review" />
       <div className="review-1">
         <div className="personal-rev">
@@ -122,7 +178,7 @@ function Overview() {
             supportingDoc: data.userDetail.supportingDocs,
             membershipCat: data.userDetail.membership,
           };
-          console.log(data.user.user.token)
+          console.log(data.user.user.token);
           query({
             method: "POST",
             url: "/users/application",
@@ -130,38 +186,12 @@ function Overview() {
             token: data.user.user.token,
           }).then((response) => {
             if (response.success) {
-              dispatch(
-                setUser({
-                  user: {
-                    isLoggedIn: true,
-                    firstName: response.data.data.personalDetails.firstName,
-                    email: response.data.data.personalDetails.email,
-                    lastName: response.data.data.personalDetails.lastName,
-                    token: data.user.user.token,
-                    isNew: false,
-                  },
-                })
-              );
-              dispatch(
-                setPersonalDetails({
-                  personalDetails: response.data.data.personalDetails,
-                })
-              );
-              dispatch(
-                setSupportingDocs({
-                  supportingDocs: response.data.data.supportingDoc,
-                })
-              );
-              dispatch(
-                setEducatioanlQualification({
-                  educationalQualification:
-                    response.data.data.educationalQualification,
-                })
-              );
-              console.log(response,"res");
-              navigate("/dashboard");
+              login({
+                email: data.user.user.email,
+                password: data.user.user.rawPassword,
+              });
+              // navigate("/dashboard");
             }
-            
           });
         }}
         style={{
