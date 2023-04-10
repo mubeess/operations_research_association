@@ -7,7 +7,6 @@ function Button({ label, style, lineButton,onClick,disabled }: ButtonProps) {
     <div
     onClick={onClick}
       style={{
-        ...style,
         marginLeft: lineButton ? "auto" : 0,
         marginRight: lineButton ? "auto" : 0,
         backgroundColor: lineButton ? "transparent" : Colors.primary,
@@ -16,7 +15,8 @@ function Button({ label, style, lineButton,onClick,disabled }: ButtonProps) {
         minWidth:lineButton?50:150,
         opacity:disabled?0.4:1,
         transition:'all 0.5s',
-        pointerEvents:disabled?"none":'all'
+        pointerEvents:disabled?"none":'all',
+        ...style,
       }}
       className="button_container"
     >

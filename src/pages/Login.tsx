@@ -37,7 +37,7 @@ function Login() {
   const formik = useFormik({
     initialValues,
     onSubmit: async (values) => {
-      console.log(values,'mm')
+      console.log(values, "mm");
       setLoading(true);
       const response = await query({
         method: "POST",
@@ -46,11 +46,12 @@ function Login() {
       });
       setLoading(false);
       setAlert(response.data.message);
-      console.log(response)
+      console.log(response);
       setTimeout(() => {
         setAlert("");
       }, 3000);
       if (response.success) {
+        console.log(response.data.data.data.personalDetails, "personal");
         dispatch(
           setUser({
             user: {
@@ -61,16 +62,26 @@ function Login() {
               token: response.data.data.token,
               isNew:
                 response.data.data.data.supportingDoc.length > 0 ? false : true,
-                membership:response.data.data.data.membershipCat,
-                status:response.data.data.data.status,
-                passport:response.data.data.data.personalDetails.passport.secureUrl
-              
+              membership: response.data.data.data.membershipCat,
+              status: response.data.data.data.status,
+              passport: response.data.data.data.personalDetails.passport
+                ? response.data.data.data.personalDetails.passport.secureUrl
+                : "",
+              paid:
+                response.data.data.data.certificateStatus == "Unpaid"
+                  ? false
+                  : true,
+              rawPassword: values.password,
+              cert:
+                response.data.data.data.certificateStatus == "Unpaid"
+                  ? null
+                  : response.data.data.certificate,
             },
           })
         );
         dispatch(
           setPersonalDetails({
-            personalDetails: response.data.data.data.personalDetails
+            personalDetails: response.data.data.data.personalDetails,
           })
         );
         dispatch(
@@ -84,8 +95,8 @@ function Login() {
               response.data.data.data.educationalQualification,
           })
         );
-       
         navigate("/dashboard");
+        console.log(response, "res");
       }
     },
     validationSchema,

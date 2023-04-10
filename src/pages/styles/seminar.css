@@ -102,3 +102,14 @@
 .payment_button:hover{
     opacity: 0.6;
 }
+@media only screen and (max-width: 767px) {
+    .seminars_container{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding:0px;
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+}

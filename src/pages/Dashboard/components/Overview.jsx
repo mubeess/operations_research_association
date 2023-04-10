@@ -12,12 +12,16 @@ import { useDispatch, useSelector } from "react-redux";
 import query from "../../../helpers/query";
 import { useNavigate } from "react-router-dom";
 import { setUser } from "../../../redux/user/userSlice";
-import { setEducatioanlQualification, setPersonalDetails, setSupportingDocs } from "../../../redux/user/userDetailSlice";
+import {
+  setEducatioanlQualification,
+  setPersonalDetails,
+  setSupportingDocs,
+} from "../../../redux/user/userDetailSlice";
 
 function Overview() {
   const data = useSelector((state) => state);
-  const dispatch=useDispatch()
-  const navigate=useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
     console.log(data, "my-data");
   }, []);
@@ -44,7 +48,7 @@ function Overview() {
               onChange={() => {}}
               disabled
               style={{
-                width: "30%",
+                width: window.innerWidth > 767 ? "30%" : "100%",
               }}
               outlined
               label="Institution Attend "
@@ -110,7 +114,7 @@ function Overview() {
           let newPersonal = { ...data.userDetail.personalDetails };
           newPersonal.passport = {
             secureUrl: "none",
-            publicID:'none'
+            publicID: "none",
           };
           const bodyData = {
             personalDetails: newPersonal,
@@ -118,6 +122,7 @@ function Overview() {
             supportingDoc: data.userDetail.supportingDocs,
             membershipCat: data.userDetail.membership,
           };
+          console.log(data.user.user.token)
           query({
             method: "POST",
             url: "/users/application",
@@ -132,14 +137,14 @@ function Overview() {
                     firstName: response.data.data.personalDetails.firstName,
                     email: response.data.data.personalDetails.email,
                     lastName: response.data.data.personalDetails.lastName,
-                    token:data.user.user.token,
-                    isNew:false
+                    token: data.user.user.token,
+                    isNew: false,
                   },
                 })
               );
               dispatch(
                 setPersonalDetails({
-                  personalDetails: response.data.data.personalDetails
+                  personalDetails: response.data.data.personalDetails,
                 })
               );
               dispatch(
@@ -153,9 +158,10 @@ function Overview() {
                     response.data.data.educationalQualification,
                 })
               );
+              console.log(response,"res");
               navigate("/dashboard");
             }
-            console.log(data);
+            
           });
         }}
         style={{

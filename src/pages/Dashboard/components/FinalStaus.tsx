@@ -4,6 +4,7 @@ import Logo from "../../../assets/Images/or_logo.png";
 import { Header } from "../../../components/Common";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
+import { Link } from "react-router-dom";
 function FinalStaus() {
   const data = useSelector((data: RootState) => data);
   useEffect(() => {
@@ -44,7 +45,7 @@ function FinalStaus() {
               <span className="status-label">Certificate Validity :</span>
               <span className="status-val">Not Yet</span>
             </div>
-            <a href="">Get certificate now</a>
+            <Link to='/dashboard/certificate'>Get certificate now</Link>
           </div>
         )}
         <div className="membership-detail">

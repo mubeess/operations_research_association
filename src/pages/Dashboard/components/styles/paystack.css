@@ -5,3 +5,13 @@
     margin:20px;
     padding: 20px;
 }
+@media only screen and (max-width: 767px) {
+    .paystack_container{
+        width: 90%;
+        padding: 10px;
+        margin: 0px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+    }
+}

@@ -4,8 +4,12 @@ import { RegularText } from "../../../components/Common";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import { setMembership } from "../../../redux/user/userDetailSlice";
+import Button from "../../../components/Button";
 const options = ["Member", "Non-member"];
-function Section0() {
+interface Section0Props{
+  gotoNext?:()=>void
+}
+function Section0({gotoNext}:Section0Props) {
   const dispatch = useDispatch();
   const initialValues = {
     membership: "",
@@ -20,13 +24,14 @@ function Section0() {
       );
     },
   });
-  useEffect(()=>{
-   return ()=>{
-     formik.handleSubmit()
-   }
-  },[])
+  // useEffect(()=>{
+  //  return ()=>{
+  //    formik.handleSubmit()
+  //  }
+  // },[])
 
   return (
+    <>
     <div className="section_0">
       <RegularText text="Kindly Select your Membership category and upload supporting document to get started " />
       <Select
@@ -43,7 +48,18 @@ function Section0() {
       <span className="asteric">
         ***Requirements
       </span>
+
     </div>
+     <Button style={{
+      height:30,
+      width:100,
+      marginTop:20,
+      marginLeft:10
+    }} onClick={()=>{
+      formik.handleSubmit()
+      gotoNext?.()
+    }} label="Next"/>
+    </>
   );
 }
 

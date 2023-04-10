@@ -8,7 +8,7 @@ import Drawer from "../../assets/Svg/drawer.svg";
 import { FolderIcon } from "../../assets/Svg/Index";
 function LayOut() {
   const location = useLocation();
-  const asideRef = useRef < HTMLElement > null;
+  const asideRef = useRef();
   return (
     <div className="layout_container">
       <div className="layout_nav">
