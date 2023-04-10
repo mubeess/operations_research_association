@@ -47,6 +47,7 @@ function Section2() {
     };
   }, []);
   return (
+    <>
     <div className="section2_main">
       <Header text="SECTION B: Educational Qualification" />
       <FormikProvider value={formik}>
@@ -66,7 +67,7 @@ function Section2() {
                             )}
                             onChange={formik.handleChange}
                             style={{
-                              width: "30%",
+                              width: window.innerWidth>746?"30%":"100%",
                             }}
                             outlined
                             label="Institution Attend "
@@ -128,15 +129,17 @@ function Section2() {
                 style={{ width: "30%", marginBottom: 20 }}
                 label="Save"
               /> */}
-              <Button style={{
-        width:'50%'
-      }} onClick={()=>{
-        formik.handleSubmit()
-      }} label="Add Data"/>
+              
         </div>
       </FormikProvider>
       
     </div>
+    <Button style={{
+        width:70
+      }} onClick={()=>{
+        formik.handleSubmit()
+      }} label="Add Data"/>
+    </>
   );
 }
 

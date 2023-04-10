@@ -125,3 +125,31 @@
     width: 100px;
     height: 50px;
 }
+@media only screen and (max-width: 767px) {
+    .certificate-container {
+        width: 90%;
+        min-height: 80vh;
+        background-color: white;
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-top: 20px;
+        border-radius: 10px;
+        border: 1px dashed var(--primary);
+        padding: 0px;
+        display: flex;
+        margin-bottom: 20px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .certify{
+        width: 70%;
+        display: flex;
+        background-color: transparent;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

@@ -11,11 +11,13 @@ import query from "../../../helpers/query";
 import Alert from "../../../components/Alert";
 import { useDispatch } from "react-redux";
 import { setSupportingDocs } from "../../../redux/user/userDetailSlice";
+import Loading from "../../../components/Loading";
 
-function Section3() {
+function Section3({gotoNext}) {
   // const [listItem, setListItem] = useState(initalState);
   const [imagesArray, setImages] = useState([]);
   const [alertText, setAlert] = useState("");
+  const [loading,setLoading]=useState(false)
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -46,7 +48,9 @@ function Section3() {
   }, []);
 
   return (
+    <>
     <div className="section3_main">
+    <Loading loading={loading}/>
       <Alert text={alertText} />
       <FormikProvider value={formik}>
         <Header text="SECTION C: Upload supporting documents" />
@@ -67,14 +71,14 @@ function Section3() {
                           id={`documents.${index}.docType`}
                           name={`documents.${index}.docType`}
                             onChange={formik.handleChange}
-                            style={{ width: "15%" }}
+                            style={{ width:window.innerWidth>746? "15%":'100%' }}
                             placeholder="Select Doc"
                             label="Document type"
                             options={["Degree Cert", "Msc Cert", "Phd Cert"]}
                           />
                           <Input
                             onChange={(e) => {
-                              console.log('changing')
+                              setLoading(true)
                               const formData = new FormData();
                               const files = e.target.files;
                               files?.length &&
@@ -100,7 +104,7 @@ function Section3() {
                                       data.data.secureUrl,
                                     ]);
                                   }
-                                  console.log(data)
+                              
                                   setAlert(data.message);
                                   setTimeout(() => {
                                     setAlert("");
@@ -109,6 +113,7 @@ function Section3() {
                                 .catch((error) => {
                                   console.error("Error uploading file:", error);
                                 });
+                                setLoading(false)
                             }}
                             outlined
                             type="file"
@@ -142,9 +147,7 @@ function Section3() {
                       </div>
                     );
                   })}
-                  <Button onClick={()=>{
-          formik.handleSubmit()
-        }} label="Add Data"/>
+                 
               </div>
             )}
           />
@@ -152,6 +155,15 @@ function Section3() {
         
       </FormikProvider>
     </div>
+     <Button style={{
+       width:70,
+       marginTop:20,
+       marginLeft:10
+     }} onClick={()=>{
+      formik.handleSubmit()
+      gotoNext()
+    }} label="Next"/>
+    </>
   );
 }
 

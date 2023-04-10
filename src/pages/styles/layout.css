@@ -46,9 +46,10 @@
 @media only screen and (max-width: 767px) {
 .layout_container{
     overflow: hidden;
+    overflow-y: scroll;
 }
   .layout_nav {
-    height: 70px;
+    height: 100px;
     width: 100%;
   
   }

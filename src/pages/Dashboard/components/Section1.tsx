@@ -11,8 +11,9 @@ import { setPersonalDetails } from "../../../redux/user/userDetailSlice";
 import Button from "../../../components/Button";
 interface Section1Props {
   overview?: boolean;
+  gotoNext?:()=>void
 }
-function Section1({ overview = false }: Section1Props) {
+function Section1({ overview = false,gotoNext }: Section1Props) {
   const user = useSelector((user: RootState) => user.userDetail);
   const dispatch = useDispatch();
   const initialValues = {
@@ -43,11 +44,12 @@ function Section1({ overview = false }: Section1Props) {
     // };
   }, []);
   return (
+    <>
     <div className="section1_container">
       <Header text="SECTION A: Personal Details" />
       <div
         style={{
-          width: overview ? "90%" : "70%",
+          width: overview ? "90%" : window.innerWidth>767?'70%':'90%',
         }}
         className="main_container"
       >
@@ -123,11 +125,17 @@ function Section1({ overview = false }: Section1Props) {
           options={["d", "d"]}
         />
         {overview && <EditButton />}
-        {!overview&&<Button onClick={()=>{
-          formik.handleSubmit()
-        }} label="Add Data"/>}
       </div>
     </div>
+    {!overview&&<Button style={{
+        marginTop:20,
+        width:70,
+        marginLeft:10
+      }} onClick={()=>{
+          formik.handleSubmit()
+          gotoNext?.()
+        }} label="Next"/>}
+    </>
   );
 }
 
