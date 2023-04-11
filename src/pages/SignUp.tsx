@@ -56,7 +56,7 @@ function Login() {
         bodyData: newValue,
       });
       setLoading(false);
-      setAlert(response.data.message);
+      setAlert(`${response.success?'KIndly Check Your Mail and verify':response.data.message}`);
       formik.resetForm()
     },
     validationSchema,
