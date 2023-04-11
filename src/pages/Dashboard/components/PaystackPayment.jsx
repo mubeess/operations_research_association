@@ -57,6 +57,8 @@ const login=async (values) => {
             ? response.data.data.data.personalDetails.passport.secureUrl
             : "",
           paid:true,
+          cert:response.data.data.certificate,
+          rawPassword:values.password,
         },
       })
     );
@@ -76,7 +78,7 @@ const login=async (values) => {
           response.data.data.data.educationalQualification,
       })
     );
-    navigate("/dashboard");
+    navigate('/dashboard')
   }
 }
 
@@ -97,6 +99,7 @@ query({
   })
   .then(res=>{
     if (res.success) {
+      
       login({email:data.user.user.email,password:data.user.user.rawPassword})
     }
   })
@@ -125,6 +128,11 @@ const initializePayment = usePaystackPayment(config);
         options={["1", "2", "3", "4", "5"]}
       />
       <Button onClick={()=>{
+        if (data.user.user.membership=='none'||data.user.user.membership==undefined) {
+          console.log(data)
+          alert('please register for membership before payment')
+          return
+        }
         initializePayment(onSuccess, onClose)
       }} label="Proceed To Payment" />
     </div>

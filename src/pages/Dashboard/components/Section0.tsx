@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Select from "../../../components/Select";
 import { RegularText } from "../../../components/Common";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import { setMembership } from "../../../redux/user/userDetailSlice";
 import Button from "../../../components/Button";
@@ -11,6 +11,7 @@ interface Section0Props{
 }
 function Section0({gotoNext}:Section0Props) {
   const dispatch = useDispatch();
+  // const data=useSelector(data=>data)
   const initialValues = {
     membership: "",
   };
@@ -24,11 +25,7 @@ function Section0({gotoNext}:Section0Props) {
       );
     },
   });
-  // useEffect(()=>{
-  //  return ()=>{
-  //    formik.handleSubmit()
-  //  }
-  // },[])
+
 
   return (
     <>

@@ -46,12 +46,11 @@ function Login() {
       });
       setLoading(false);
       setAlert(response.data.message);
-      console.log(response);
       setTimeout(() => {
         setAlert("");
       }, 3000);
       if (response.success) {
-        console.log(response.data.data.data.personalDetails, "personal");
+        
         dispatch(
           setUser({
             user: {
@@ -96,7 +95,7 @@ function Login() {
           })
         );
         navigate("/dashboard");
-        console.log(response, "res");
+       
       }
     },
     validationSchema,
