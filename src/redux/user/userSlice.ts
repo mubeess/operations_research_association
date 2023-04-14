@@ -14,7 +14,8 @@ export interface UserState {
     passport?:string;
     paid?:boolean;
     rawPassword?:string;
-    cert?:any
+    cert?:any;
+   transactions?:[]
   };
 }
 
@@ -31,7 +32,8 @@ const initialState: UserState = {
     passport:'none',
     paid:false,
     rawPassword:'',
-    cert:null
+    cert:null,
+    transactions:[]
   },
 };
 

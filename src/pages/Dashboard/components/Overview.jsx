@@ -40,6 +40,11 @@ function Overview() {
       setAlert("");
     }, 3000);
     if (response.success) {
+      const transactions = [];
+      const mytransactions = transactions.concat(
+        response.data.data.transactionHistory.certificates,
+        response.data.data.transactionHistory.events
+      );
       dispatch(
         setUser({
           user: {
@@ -56,7 +61,8 @@ function Overview() {
               ? response.data.data.data.personalDetails.passport.secureUrl
               : "",
             paid: false,
-            rawPassword:values.password
+            rawPassword: values.password,
+            transactions: mytransactions,
           },
         })
       );
