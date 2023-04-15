@@ -56,7 +56,7 @@ function Certificate({data}) {
         </div>
         <div className="cert-val">
             <span className="label">MEMBERSHIP NO:</span>
-            <Header text={`${data.cert.certificateNumber}`}/>
+            <Header text={`${data.membershipNumber}`}/>
         </div>
         <div className="cert-val">
             <span className="label">Validity:</span>

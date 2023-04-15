@@ -172,4 +172,12 @@
       font-size: 15px;
       text-align: left;
     }
+    .membership .membership-number {
+      width: 100%;
+      min-height: 100px;
+      background-color: var(--white);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
   }

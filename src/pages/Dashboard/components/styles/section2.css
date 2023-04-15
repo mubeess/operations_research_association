@@ -79,16 +79,24 @@
 }
 
 @media only screen and (max-width: 767px) {
+    .section2_main{
+        margin-top: 10px;
+        width: 100%;
+        background-color: var(--back_ground);
+        display: flex;
+        flex-direction: column;
+        transition: all 0.5s;
+    }
     .section2_container{
         display: flex;
         width: 100%;
         background-color: var(--white);
         box-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
-        min-height: 160px;
+        min-height: 40vh;
         flex-direction: column;
         margin-top: 10px;
         transition: all 0.5s;
-        max-height: 30vh;
+        max-height: 40vh;
         overflow-y: scroll;
     }
     .section2_container .sec2_inputs{

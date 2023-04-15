@@ -15,7 +15,9 @@ export interface UserState {
     paid?:boolean;
     rawPassword?:string;
     cert?:any;
-   transactions?:[]
+   transactions?:[];
+   membershipNumber?:string;
+   
   };
 }
 
@@ -33,7 +35,8 @@ const initialState: UserState = {
     paid:false,
     rawPassword:'',
     cert:null,
-    transactions:[]
+    transactions:[],
+    membershipNumber:''
   },
 };
 

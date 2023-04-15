@@ -6,9 +6,6 @@ import Button from '../../components/Button'
 
 function CertificatePage() {
   const data=useSelector((user)=>user.user.user)
-  useEffect(()=>{
-   console.log(data,"----nn")
-  },[])
   return (
     <>
     {data.paid&& <Button style={{

@@ -7,9 +7,7 @@ import { RootState } from "../../../redux/store";
 import { Link } from "react-router-dom";
 function FinalStaus() {
   const data = useSelector((data: RootState) => data);
-  useEffect(() => {
-    console.log(data, "data");
-  }, []);
+
   return (
     <div className="final_container">
       <div className="membership">
@@ -18,7 +16,7 @@ function FinalStaus() {
             <Header text="MEMBERSHIP NUMBER" />
             <Header
               style={{ color: "var(--primary)", marginTop: 20 }}
-              text="normal"
+              text={`${data.user.user.membershipNumber}`}
             />
             <div className="status">
               <span className="status-label">Status :</span>
@@ -26,9 +24,16 @@ function FinalStaus() {
             </div>
             <div className="status">
               <span className="status-label">Certificate Validity :</span>
-              <span className="status-val">DEC 2027</span>
+              <span className="status-val">
+                {data.user.user.paid
+                  ? data.user.user.cert.validity
+                  : "Not Yet Paid"}
+              </span>
             </div>
-            <a href="">View Certificate</a>
+
+            <Link to="/dashboard/certificate">
+              {data.user.user.paid ? "View Certificate" : "Get Certificate"}
+            </Link>
           </div>
         ) : (
           <div className="main-status">
@@ -45,7 +50,7 @@ function FinalStaus() {
               <span className="status-label">Certificate Validity :</span>
               <span className="status-val">Not Yet</span>
             </div>
-            <Link to='/dashboard/certificate'>Get certificate now</Link>
+            <Link to="/dashboard/certificate">Get certificate now</Link>
           </div>
         )}
         <div className="membership-detail">
