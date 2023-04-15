@@ -21,7 +21,7 @@ import { useState } from "react";
 import Loading from "../../../components/Loading";
 import Alert from "../../../components/Alert";
 
-function Overview() {
+function Overview({gotoPage}) {
   const data = useSelector((state) => state);
   const [loading, setLoading] = useState(false);
   const [alertMsg, setAlert] = useState("");
@@ -40,6 +40,11 @@ function Overview() {
       setAlert("");
     }, 3000);
     if (response.success) {
+      const transactions = [];
+      const mytransactions = transactions.concat(
+        response.data.data.transactionHistory.certificates,
+        response.data.data.transactionHistory.events
+      );
       dispatch(
         setUser({
           user: {
@@ -56,7 +61,8 @@ function Overview() {
               ? response.data.data.data.personalDetails.passport.secureUrl
               : "",
             paid: false,
-            rawPassword:values.password
+            rawPassword: values.password,
+            transactions: mytransactions,
           },
         })
       );
@@ -87,11 +93,11 @@ function Overview() {
       <Header text="Summary Review" />
       <div className="review-1">
         <div className="personal-rev">
-          <Section1 overview />
+          <Section1 gotoPage={()=>gotoPage(1)} overview />
         </div>
         <div className="passport-rev">
           <img src={Passport} />
-          <EditButton />
+          <EditButton/>
         </div>
       </div>
       <Header
@@ -136,7 +142,7 @@ function Overview() {
             />
           </div>
         ))}
-        <EditButton />
+        <EditButton onClick={()=>gotoPage(2)}/>
       </div>
       <Header
         style={{ marginBottom: 20 }}
@@ -157,7 +163,7 @@ function Overview() {
           </div>
         ))}
 
-        <EditButton />
+        <EditButton onClick={()=>gotoPage(2)}/>
       </div>
       <div className="agree">
         <input type="checkbox" />

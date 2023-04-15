@@ -37,7 +37,6 @@ function Home() {
       case 2:
         return (
           <Fade>
-            <Section2 />
             <Section3 gotoNext={()=>{
               setCurrent(3)
             }} />
@@ -46,7 +45,9 @@ function Home() {
       case 3:
         return (
           <Fade>
-            <Overview />
+            <Overview gotoPage={(val)=>{
+              setCurrent(val)
+            }} />
           </Fade>
         );
       case 4:

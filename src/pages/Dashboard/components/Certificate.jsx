@@ -6,6 +6,7 @@ import Qr from "../../../assets/Images/qr.png";
 import Certify from "../../../assets/Images/cert.png";
 import Bg from '../../../assets/Images/or-bg.png'
 import { Header } from "../../../components/Common";
+import convertDate from "../../../helpers/convertDate";
 function Certificate({data}) {
  useEffect(()=>{
  console.log(data,'cert')
@@ -38,9 +39,10 @@ function Certificate({data}) {
         <div className="cert-name">
           <Header text={`${data.firstName} ${data.lastName}`} />
         </div>
+        
         <div className="other-txt">
           <span>was on this day</span>
-          <span className="txt-dashed">{`${data.cert.createdAt}`}</span>
+          <span className="txt-dashed">{`${convertDate(data.cert.createdAt)}`}</span>
           <span>admitted to the grade of</span>
           <span className="txt-dashed">{`${data.membership}`}</span>
         </div>
@@ -54,7 +56,7 @@ function Certificate({data}) {
         </div>
         <div className="cert-val">
             <span className="label">MEMBERSHIP NO:</span>
-            <Header text={`${data.cert.certificateNumber}`}/>
+            <Header text={`${data.membershipNumber}`}/>
         </div>
         <div className="cert-val">
             <span className="label">Validity:</span>

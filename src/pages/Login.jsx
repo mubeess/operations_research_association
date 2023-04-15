@@ -37,7 +37,6 @@ function Login() {
   const formik = useFormik({
     initialValues,
     onSubmit: async (values) => {
-      console.log(values, "mm");
       setLoading(true);
       const response = await query({
         method: "POST",
@@ -50,7 +49,12 @@ function Login() {
         setAlert("");
       }, 3000);
       if (response.success) {
-        
+        const transactions = [];
+        const mytransactions = transactions.concat(
+          response.data.data.transactionHistory.certificates,
+          response.data.data.transactionHistory.events
+        );
+        console.log(response.data);
         dispatch(
           setUser({
             user: {
@@ -75,6 +79,11 @@ function Login() {
                 response.data.data.data.certificateStatus == "Unpaid"
                   ? null
                   : response.data.data.certificate,
+              transactions: mytransactions,
+              membershipNumber:
+                response.data.data.data.status == "Approved"
+                  ? response.data.data.data.membershipNumber
+                  : "",
             },
           })
         );
@@ -94,8 +103,8 @@ function Login() {
               response.data.data.data.educationalQualification,
           })
         );
+
         navigate("/dashboard");
-       
       }
     },
     validationSchema,

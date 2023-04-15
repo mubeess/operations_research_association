@@ -16,11 +16,16 @@ export default async function query({ method, url, bodyData,token='' }: QueryPar
   }
   const conditionalHeader=token?headers1:headers2
   try {
-    const response = await fetch(`https://oridsan.fly.dev/api/v1${url}`, {
-      method: method,
-      headers:conditionalHeader,
-      body: JSON.stringify(bodyData),
-    });
+    if (method=='GET') {
+    var response = await fetch(`https://oridsan.fly.dev/api/v1${url}`)
+    }else{
+      var response = await fetch(`https://oridsan.fly.dev/api/v1${url}`, {
+        method: method,
+        headers:conditionalHeader,
+        body: JSON.stringify(bodyData),
+      });
+    }
+    
     const data = await response.json();
     if (data.success) {
       return { success: true, data: data };

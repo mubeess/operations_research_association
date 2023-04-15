@@ -10,7 +10,7 @@ import Button from "../../../components/Button";
 import query from "../../../helpers/query";
 import Alert from "../../../components/Alert";
 import { useDispatch } from "react-redux";
-import { setSupportingDocs } from "../../../redux/user/userDetailSlice";
+import { setEducatioanlQualification, setSupportingDocs } from "../../../redux/user/userDetailSlice";
 import Loading from "../../../components/Loading";
 
 function Section3({ gotoNext }) {
@@ -30,6 +30,14 @@ function Section3({ gotoNext }) {
         },
       },
     ],
+    qualification: [
+      {
+        institution: "Mau",
+        from: "2021",
+        to: "2022",
+        qualificationObtained: "Btech",
+      },
+    ],
   };
   const formik = useFormik({
     initialValues,
@@ -40,16 +48,109 @@ function Section3({ gotoNext }) {
           supportingDocs: val.documents,
         })
       );
+      dispatch(
+        setEducatioanlQualification({
+          educationalQualification: [...val.qualification],
+        })
+      );
     },
   });
-  useEffect(() => {
-    // return function () {
-    //   formik.handleSubmit();
-    // };
-  }, []);
+ 
 
   return (
     <>
+
+<>
+      <div className="section2_main">
+        <Header text="SECTION B: Educational Qualification" />
+        <FormikProvider value={formik}>
+          <div className="section2_container">
+            <FieldArray
+              name="qualification"
+              render={(arrayHelpers) => {
+                const qualifications = formik.values.qualification;
+                return (
+                  <>
+                    {qualifications.length > 0
+                      ? qualifications.map((item, index) => (
+                          <div className="sec2_inputs" key={index.toString()}>
+                            <Input
+                              {...formik.getFieldProps(
+                                `qualification.${index}.institution`
+                              )}
+                              onChange={formik.handleChange}
+                              style={{
+                                width: window.innerWidth > 767 ? "30%" : "100%",
+                              }}
+                              outlined
+                              label="Institution Attend "
+                              placeholder="Enter the name of institution attend"
+                            />
+                            <Input
+                              {...formik.getFieldProps(
+                                `qualification.${index}.from`
+                              )}
+                              onChange={formik.handleChange}
+                              outlined
+                              type="date"
+                              label="From"
+                            />
+                            <Input
+                              {...formik.getFieldProps(
+                                `qualification.${index}.to`
+                              )}
+                              onChange={formik.handleChange}
+                              outlined
+                              type="date"
+                              label="To"
+                            />
+                            <Input
+                              {...formik.getFieldProps(
+                                `qualification.${index}.qualificationObtained`
+                              )}
+                              onChange={formik.handleChange}
+                              outlined
+                              type="text"
+                              label="Qualification Obtained"
+                            />
+                            {index == qualifications.length - 1 && (
+                              <AddButton
+                                onClick={() =>
+                                  arrayHelpers.push({
+                                    institution: "o",
+                                    from: "2",
+                                    to: "2",
+                                    qualificationObtained: "2",
+                                  })
+                                }
+                              />
+                            )}
+                            {index !== qualifications.length - 1 && (
+                              <DeleteButton
+                                onClick={() => arrayHelpers.remove(index)}
+                              />
+                            )}
+                          </div>
+                        ))
+                      : null}
+                  </>
+                );
+              }}
+            />
+            {/* <Button
+                onClick={() => console.log(values, "===")}
+                style={{ width: "30%", marginBottom: 20 }}
+                label="Save"
+              /> */}
+          </div>
+        </FormikProvider>
+      </div>
+    </>
+
+
+
+
+
       <div className="section3_main">
         <Alert text={alertText} />
         <FormikProvider value={formik}>
@@ -73,7 +174,7 @@ function Section3({ gotoNext }) {
                               name={`documents.${index}.docType`}
                               onChange={formik.handleChange}
                               style={{
-                                width: window.innerWidth > 746 ? "15%" : "100%",
+                                width: window.innerWidth > 767 ? "15%" : "100%",
                               }}
                               placeholder="Select Doc"
                               label="Document type"

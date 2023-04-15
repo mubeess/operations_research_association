@@ -5,16 +5,12 @@ import Select from "../../../components/Select";
 import { Header } from "../../../components/Common";
 import EditButton from "../../../components/EditButton";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
 import { useFormik } from "formik";
 import { setPersonalDetails } from "../../../redux/user/userDetailSlice";
 import Button from "../../../components/Button";
-interface Section1Props {
-  overview?: boolean;
-  gotoNext?:()=>void
-}
-function Section1({ overview = false,gotoNext }: Section1Props) {
-  const user = useSelector((user: RootState) => user.userDetail);
+
+function Section1({ overview = false,gotoNext,gotoPage }) {
+  const user = useSelector((user) => user.userDetail);
   const dispatch = useDispatch();
   const initialValues = {
     dob: "",
@@ -38,11 +34,7 @@ function Section1({ overview = false,gotoNext }: Section1Props) {
       );
     },
   });
-  useEffect(() => {
-    // return () => {
-    //   formik.handleSubmit();
-    // };
-  }, []);
+ 
   return (
     <>
     <div className="section1_container">
@@ -124,7 +116,9 @@ function Section1({ overview = false,gotoNext }: Section1Props) {
           label="State"
           options={["d", "d"]}
         />
-        {overview && <EditButton />}
+        {overview && <EditButton onClick={()=>{
+          gotoPage()
+        }} />}
       </div>
     </div>
     {!overview&&<Button style={{
