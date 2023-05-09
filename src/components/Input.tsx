@@ -21,8 +21,8 @@ function Input({
       <div className="input_label">
         <RegularText
           style={{
-            fontSize: 16,
-            fontWeight: "600",
+            fontSize: 14,
+            fontWeight: "500",
             marginBottom: 0,
           }}
           text={`${label}`}

@@ -16,7 +16,7 @@ function Select({
 }: SelectProps) {
   return (
     <div style={style} className="app_input">
-      <div className="input_label">
+      <div className="input_label " >
         <RegularText
           style={{
             fontSize: 16,
@@ -28,10 +28,15 @@ function Select({
         {required ? <span className="asteric">*</span> : null}
       </div>
 
-      <select name={name} id={id} onChange={(e)=>onChange(e)} style={{
-        backgroundColor:disabled?'var(--back_ground)':'white'
-      }} disabled={disabled} defaultValue={placeholder}>
+      <select name={name} id={id} onChange={(e)=>onChange(e)} 
+      style={{
+        backgroundColor:disabled?'var(--back_ground)':'white',
+        fontFamily: 'Mulish'
+      }} 
+      disabled={disabled} 
+      defaultValue={placeholder}>
         <option value={placeholder}>{placeholder}</option>
+
         {options.map((opt: string, index) => (
           <option value={opt} key={opt}>
             {opt}

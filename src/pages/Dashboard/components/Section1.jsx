@@ -8,10 +8,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import { setPersonalDetails } from "../../../redux/user/userDetailSlice";
 import Button from "../../../components/Button";
+import {states} from '../../../helpers/state'
 
 function Section1({ overview = false,gotoNext,gotoPage }) {
+
   const user = useSelector((user) => user.userDetail);
+
   const dispatch = useDispatch();
+
+  
   const initialValues = {
     dob: "",
     gender: "",
@@ -89,7 +94,10 @@ function Section1({ overview = false,gotoNext,gotoPage }) {
           onChange={formik.handleChange}
           disabled={overview}
           label="Gender"
-          options={["m", "f"]}
+          options={["male", "female"]}
+          style={{
+            height: '50px'
+          }}
         />
         <Input
           value={user.personalDetails && overview ? user.personalDetails.phone : formik.values.phone}
@@ -106,7 +114,10 @@ function Section1({ overview = false,gotoNext,gotoPage }) {
           onChange={formik.handleChange}
           disabled={overview}
           label="Zone"
-          options={["f", "d"]}
+          options={["male", "female"]}
+          style={{
+            height: '50px'
+          }}
         />
         <Select
           placeholder={user.personalDetails ? user.personalDetails.state : ""}
@@ -114,21 +125,39 @@ function Section1({ overview = false,gotoNext,gotoPage }) {
           onChange={formik.handleChange}
           disabled={overview}
           label="State"
-          options={["d", "d"]}
+          options={states}
+          style={{
+            height: '50px'
+          }}
         />
         {overview && <EditButton onClick={()=>{
           gotoPage()
         }} />}
       </div>
     </div>
-    {!overview&&<Button style={{
-        marginTop:20,
-        width:70,
-        marginLeft:10
-      }} onClick={()=>{
-          formik.handleSubmit()
-          gotoNext?.()
-        }} label="Next"/>}
+
+    <div className=" w-[70%] flex justify-between">
+
+    <Button style={{
+          marginTop:20,
+          width:70,
+          marginLeft:10,
+          backgroundColor: 'white',
+          color: 'black'
+        }} onClick={()=>{
+          gotoPage(0)
+          }} lineButton={true} label="Back"/>
+
+      {!overview&&<Button style={{
+          marginTop:20,
+          width:70,
+          marginLeft:10
+        }} onClick={()=>{
+            formik.handleSubmit()
+            gotoNext?.()
+          }} label="Next"/>}
+
+    </div>
     </>
   );
 }

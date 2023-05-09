@@ -6,6 +6,8 @@ import { useFormik } from "formik";
 import { setMembership } from "../../../redux/user/userDetailSlice";
 import Button from "../../../components/Button";
 import query from "../../../helpers/query";
+import {MoneyXchange} from '../../../helpers/moneyConvert'
+
 
 function Section0({ gotoNext }) {
   const dispatch = useDispatch();
@@ -13,7 +15,10 @@ function Section0({ gotoNext }) {
   const [options, setOptions] = useState([]);
   const [selected, setSelected] = useState(null);
   // const data=useSelector(data=>data)
+
+  
   useEffect(() => {
+
     const memberships = [];
     query({ method: "GET", bodyData: {}, url: "/membership-category" }).then(
       (data) => {
@@ -39,7 +44,7 @@ function Section0({ gotoNext }) {
 
   return (
     <>
-      <div className="section_0">
+      <div className="w-[60%] sm:w-[100%] min-h-[50vh] p-10 flex flex-col gap-3 bg-[white] shadow-md">
         <RegularText text="Kindly Select your Membership category and upload supporting document to get started " />
         <Select
           id="membership"
@@ -66,13 +71,24 @@ function Section0({ gotoNext }) {
 
         <span className="asteric">***Requirements</span>
         {selected !== null && (
-          <>
+          <div className="text-[14px] flex flex-col gap-2">
             <h3>{`Desc:${selected[0].description}`}</h3>
-            <p>{`Price:N${selected[0].price}`}</p>
-          </>
+
+            <ol className="list-disc ml-5">
+              {selected[0]?.documentTypes?.map(val => {
+                return <li>{val}</li>
+              }) }
+            </ol>
+
+            <p>{`Price: N${selected[0].price} - $${MoneyXchange(selected[0].price)}`}</p>
+
+          </div>
         )}
+
+
       </div>
       <Button
+        disabled={formik.values.membership === '' || formik.values.membership === 'Please Select Category'}
         style={{
           height: 30,
           width: 100,
