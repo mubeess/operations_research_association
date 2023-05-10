@@ -12,7 +12,8 @@ function Select({
   disabled,
   onChange,
   id,
-  name
+  name,
+  value
 }: SelectProps) {
   return (
     <div style={style} className="app_input">
@@ -34,7 +35,7 @@ function Select({
         fontFamily: 'Mulish'
       }} 
       disabled={disabled} 
-      defaultValue={placeholder}>
+      defaultValue={value}>
         <option value={placeholder}>{placeholder}</option>
 
         {options.map((opt: string, index) => (

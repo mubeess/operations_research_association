@@ -11,6 +11,10 @@ import Button from "../../../components/Button";
 import { setEducatioanlQualification } from "../../../redux/user/userDetailSlice";
 import Loading from "../../../components/Loading";
 import Alert from "../../../components/Alert";
+import * as Yup from 'yup'
+
+
+
 interface initialStateProp {
   initial: [any] | any;
 }
@@ -26,17 +30,22 @@ function Section2() {
   const initialValues = {
     qualification: [
       {
-        institution: "Mau",
-        from: "2021",
-        to: "2022",
-        qualificationObtained: "Btech",
+        institution: "",
+        from: "",
+        to: "",
+        qualificationObtained: "",
       },
     ],
   };
+
+  
+
   const formik = useFormik({
     initialValues,
     onSubmit: (val) => {
+      console.log(val)
       setLoading(true);
+
       dispatch(
         setEducatioanlQualification({
           educationalQualification: [...val.qualification],
@@ -52,14 +61,18 @@ function Section2() {
 
   // const user = useSelector((user: RootState) => user.userDetail);
 
+ 
+
   return (
     <>
       <div className="section2_main">
         <Loading loading={loading} />
         <Alert text={msg} />
         <Header text="SECTION B: Educational Qualification" />
+
         <FormikProvider value={formik}>
           <div className="section2_container">
+
             <FieldArray
               name="qualification"
               render={(arrayHelpers) => {
@@ -140,6 +153,7 @@ function Section2() {
           </div>
         </FormikProvider>
       </div>
+
       <Button
         style={{
           width: 70,

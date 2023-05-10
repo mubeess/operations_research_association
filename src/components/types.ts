@@ -19,6 +19,7 @@ export interface InputProps {
   name?: string;
   error?: string;
   value?: string;
+  inputStyle?: CSSProperties
 }
 export interface SelectProps {
   label: string;
@@ -31,6 +32,7 @@ export interface SelectProps {
   disabled?: boolean;
   id?: string;
   name?: string;
+  value?: string
 }
 
 export interface ButtonProps {

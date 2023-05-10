@@ -12,6 +12,7 @@ import Alert from "../../../components/Alert";
 import { useDispatch } from "react-redux";
 import { setEducatioanlQualification, setSupportingDocs } from "../../../redux/user/userDetailSlice";
 import Loading from "../../../components/Loading";
+import * as Yup from 'yup'
 
 function Section3({ gotoNext }) {
   // const [listItem, setListItem] = useState(initalState);
@@ -19,6 +20,13 @@ function Section3({ gotoNext }) {
   const [alertText, setAlert] = useState("");
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+
+  const qualificationSchema = Yup.object().shape({
+    institution: Yup.string().required('Institution Attend is required'),
+    from: Yup.date().required('From date is required'),
+    to: Yup.date().required('To date is required'),
+    qualificationObtained: Yup.string().required('Qualification Obtained is required'),
+  });
 
   const initialValues = {
     documents: [
@@ -41,6 +49,7 @@ function Section3({ gotoNext }) {
   };
   const formik = useFormik({
     initialValues,
+    validationSchema: Yup.array().of(qualificationSchema),
     onSubmit: (val) => {
       console.log(val, "-----");
       dispatch(
@@ -117,10 +126,10 @@ function Section3({ gotoNext }) {
                               <AddButton
                                 onClick={() =>
                                   arrayHelpers.push({
-                                    institution: "o",
-                                    from: "2",
-                                    to: "2",
-                                    qualificationObtained: "2",
+                                    institution: "",
+                                    from: "",
+                                    to: "",
+                                    qualificationObtained: "",
                                   })
                                 }
                               />
@@ -178,9 +187,11 @@ function Section3({ gotoNext }) {
                               }}
                               placeholder="Select Doc"
                               label="Document type"
-                              options={["Degree Cert", "Msc Cert", "Phd Cert"]}
+                              options={["Bachelor", "Masters", "Doctorate"]}
                             />
+
                             <Input
+                            inputStyle={{height: '40px'}}
                               onChange={(e) => {
                                 const formData = new FormData();
                                 const files = e.target.files;
@@ -226,6 +237,7 @@ function Section3({ gotoNext }) {
                               type="file"
                               label="Upload document"
                             />
+
                             <div className="sec3_btn">
                               {index == formik.values.documents.length - 1 ? (
                                 <AddButton
