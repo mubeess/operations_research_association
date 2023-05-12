@@ -6,14 +6,40 @@ import { Outlet, useLocation } from "react-router-dom";
 import NavLink from "../../components/NavLink";
 import Drawer from "../../assets/Svg/drawer.svg";
 import { FolderIcon } from "../../assets/Svg/Index";
+import {AiOutlineFileText} from 'react-icons/ai'
+import {PaymentIcon, SeminarIcon} from '../../assets/Svg/Index'
+import {HiLogout} from 'react-icons/hi'
+import { setUser } from "../../redux/user/userSlice";
+
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+
 function LayOut() {
   const location = useLocation();
   const asideRef = useRef();
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const logOut = () =>{
+    dispatch(
+      setUser({
+        user: {
+          isLoggedIn: false,
+        },
+      })
+    );
+
+    navigate('/')
+  } 
+
+
   return (
     <div className="layout_container">
       <div className="layout_nav">
         <img className="layout_logo" src={Logo} alt="img" />
-        <img className="layout_user" src={User} alt="img" />
+        <HiLogout onClick={logOut}
+        className="mr-[40px] h-7 w-7 p-1 rounded-full hover:shadow-lg cursor-pointer"/>
         <img
           onClick={() => {
             if (window.innerWidth <= 767) {
@@ -48,7 +74,7 @@ function LayOut() {
             label="Certificate"
             route="/dashboard/certificate"
             Icon={() => (
-              <FolderIcon
+              <AiOutlineFileText className="text-[30px]"
                 active={location.pathname == "/dashboard/certificate"}
               />
             )}
@@ -63,7 +89,7 @@ function LayOut() {
             label="Payment Logs"
             route="/dashboard/payment"
             Icon={() => (
-              <FolderIcon active={location.pathname == "/dashboard/payment"} />
+              <PaymentIcon active={location.pathname == "/dashboard/payment"} />
             )}
           />
 
@@ -76,7 +102,7 @@ function LayOut() {
             label="Seminars/Conferences"
             route="/dashboard/seminars"
             Icon={() => (
-              <FolderIcon active={location.pathname == "/dashboard/seminars"} />
+              <SeminarIcon active={location.pathname == "/dashboard/seminars"} />
             )}
           />
           {/* <NavLink/>

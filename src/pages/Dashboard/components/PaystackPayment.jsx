@@ -15,6 +15,9 @@ import {
   setSupportingDocs,
 } from "../../../redux/user/userDetailSlice";
 import { useNavigate } from "react-router-dom";
+
+
+
 export default function PaystackPayment() {
   const data = useSelector((data) => data);
   const [loading, setLoading] = useState(false);
@@ -28,11 +31,14 @@ export default function PaystackPayment() {
   useEffect(() => {
     query({ method: "GET", bodyData: {}, url: "/membership-category" }).then(
       (res) => {
-       const filtered= res.data.data.filter((mem) => data.user.user.membership==mem.membershipCat);
-      setAmToPay(filtered[0].price)
+
+        let filtered = res?.data?.data.filter((mem) => data?.user?.user?.membership == mem.membershipCat);
+        if(filtered?.length === 0) setAmToPay(20000)
+        else setAmToPay(filtered[0].price)
       }
     );
   }, []);
+
   const config = {
     reference: new Date().getTime().toString(),
     email: "mubarakibrahim2015@gmail.com",

@@ -15,6 +15,9 @@ import {
 } from "../../../redux/user/userDetailSlice";
 import Loading from "../../../components/Loading";
 import Alert from "../../../components/Alert";
+import {MoneyXchange} from '../../../helpers/moneyConvert'
+
+
 export default function SeminarEvent({ event }) {
   const data = useSelector((data) => data);
   const [loading, setLoading] = useState(false);
@@ -22,10 +25,11 @@ export default function SeminarEvent({ event }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [amount, setAmount] = useState(0);
+
   const config = {
     reference: new Date().getTime().toString(),
     email: "mubarakibrahim2015@gmail.com",
-    amount: 2000 * 100, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
+    amount: event.cost * 100, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
     publicKey: "pk_test_acd82313c5945d37a69e9e06195f153984cc70e0",
   };
   const login = async (values) => {
@@ -96,7 +100,7 @@ export default function SeminarEvent({ event }) {
     // Implementation for whatever you want to do with reference and after success call.
     console.log(reference);
     const bodyData = {
-      cost: 2000 * 100,
+      cost: event.cost,
       eventId: event._id,
       transactionId: reference.reference,
     };
@@ -141,9 +145,10 @@ export default function SeminarEvent({ event }) {
 
         <div className="event_calender">
           <div className="event_cal_date">
-            <Header text={convertDate(event.createdAt).split("-")[2]} />
-            <RegularText text={convertDate(event.createdAt).split("-")[1]} />
+            <Header text={convertDate(event.date).split("-")[2]} />
+            <RegularText text={convertDate(event.date).split("-")[1]} />
           </div>
+          
           <u
             style={{
               gridColumn: "2/4",
@@ -153,11 +158,17 @@ export default function SeminarEvent({ event }) {
           </u>
         </div>
       </div>
+
+
       <div className="event_payment">
+      <p className="w-[90%] m-auto text-[12px] text-center max-h-[50px] overflow-y-auto">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique non saepe sit ipsa voluptas? Itaque, cupiditate. Earum magnam maiores rerum quaerat alias, saepe sit quasi odit minus quia omnis repudiandae?
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatu</p>
         <Header
           style={{ marginLeft: "auto", marginTop: 20, marginRight: 20 }}
-          text={`₦${event.cost}`}
+          text={`₦${event.cost} - $${Math.ceil(MoneyXchange(event.cost))}`}
         />
+        
         <div className="payments_flow">
           <div
             onClick={() => {

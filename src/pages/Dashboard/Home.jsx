@@ -9,12 +9,18 @@ import FinalStaus from "./components/FinalStaus";
 import Section0 from "./components/Section0";
 import { Fade } from "react-awesome-reveal";
 import { useSelector } from "react-redux";
-// import { RootState } from "../../redux/store";
-const initialState = [{ id: "1" }];
+import { useNavigate } from "react-router-dom";
+
+
 function Home() {
   const user = useSelector((state) => state.user);
-  // const data = useSelector((state: RootState) => state);
   const [currentIndex, setCurrent] = useState(user.user.isNew ? 0 : 4);
+  const navigate = useNavigate()
+
+  console.log(user.user.isLoggedIn)
+  useEffect(()=> {
+    if(user.user.isLoggedIn === false) navigate('/')
+  },[])
   
   function Conditional() {
     switch (currentIndex) {

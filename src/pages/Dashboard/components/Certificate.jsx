@@ -7,22 +7,26 @@ import Certify from "../../../assets/Images/cert.png";
 import Bg from '../../../assets/Images/or-bg.png'
 import { Header } from "../../../components/Common";
 import convertDate from "../../../helpers/convertDate";
-function Certificate({data}) {
+
+
+const Certificate = React.forwardRef(({data}, ref) => {
+
  useEffect(()=>{
- console.log(data,'cert')
+//  console.log(data,'cert')
  },[])
+
   return (
-    <div className="certificate-container">
+    <div ref={ref} className="certificate-container">
       <div className="cert-bar"></div>
       <div className="main-cert">
         <img id="bg" src={Bg}/>
         <img id="logo" src={Logo} />
         <Header
-          style={{ color: "var(--primary)", textAlign: "center" }}
+          style={{ color: data.paid ? "var(--primary)": 'red', textAlign: "center" }}
           text="OPERATIONS RESEARCH INSTITUTE FOR DECISION SCIENCE & ANALYTICS OF NIGERIA "
         />
         <Header
-          style={{ textAlign: "center", marginTop: 20 }}
+          style={{ textAlign: "center", marginTop: 20,  color: data.paid ? "var(--primary)": 'red' }}
           text="MEMBERSHIP CERTIFICATE"
         />
         <div className="certify">
@@ -32,6 +36,7 @@ function Certificate({data}) {
               position: "absolute",
               right: 0,
               marginRight: 30,
+              color: data.paid ? "var(--primary)": 'red'
             }}
             text={`NO:${data.cert.certificateNumber}`}
           />
@@ -79,6 +84,6 @@ function Certificate({data}) {
       </div>
     </div>
   );
-}
+})
 
 export default Certificate;

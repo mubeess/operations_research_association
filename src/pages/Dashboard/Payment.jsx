@@ -18,19 +18,19 @@ function Payment() {
               alignItems:'center'
             }}>
               <img src="/38.png" alt="img"/>
-              <h3>No Payments Made</h3>
+              <h3 className="font-[500]">No Payments Made</h3>
             </div>)}
       {
         data.length>0&&(
           <div className="main-payments">
-        <div className="payment-search">
-          <Header text="Reference No/Transaction No/Email" />
+        <div className="payment-search ">
+          <div className="text-[20px] ">Reference No/Transaction No/Email</div>
         </div>
        
-        <div className="payments-table">
+        <div className="payments-table max-h-[70vh] overflow-y-auto">
        
           <table>
-            <thead>
+            <thead className="sticky top-0 bg-[#5a8f7c]">
               <th>S/N</th>
               <th>Transaction ID</th>
               <th>Amount (In Naira)</th>
@@ -48,6 +48,7 @@ function Payment() {
                   <td>{detail.certificateNumber?'Certificate':'Event'}</td>
                 </tr>
               ))}
+              
             </tbody>
           </table>
         </div>

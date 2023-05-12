@@ -15,6 +15,41 @@ export const FolderIcon = ({ active }: IconProps) => (
   </svg>
 );
 
+export const PaymentIcon = ({ active }: IconProps) => (
+  <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+  width="14.000000pt" height="18.000000pt" viewBox="0 0 14.000000 18.000000"
+  preserveAspectRatio="xMidYMid meet">
+ 
+ <g transform="translate(0.000000,18.000000) scale(0.100000,-0.100000)"
+ fill="#000000" stroke="none">
+ <path d="M10 95 c0 -47 3 -85 7 -85 4 0 17 10 30 22 l23 22 30 -29 30 -29 0
+ 92 0 92 -60 0 -60 0 0 -85z m110 -2 l0 -68 -25 30 -25 30 -25 -30 -25 -30 0
+ 68 0 67 50 0 50 0 0 -67z"
+ fill={active ? "white" : "black"}
+ />
+ </g>
+ </svg>
+);
+
+export const SeminarIcon = ({active}: IconProps) => (
+  <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+  width="18.000000pt" height="18.000000pt" viewBox="0 0 18.000000 18.000000"
+  preserveAspectRatio="xMidYMid meet">
+
+  <g transform="translate(0.000000,18.000000) scale(0.100000,-0.100000)"
+  fill="#000000" stroke="none">
+  <path d="M156 171 c-3 -5 -14 -7 -24 -5 -9 3 -26 -2 -37 -10 -20 -14 -20 -15
+  10 -45 34 -37 49 -29 58 32 6 37 3 45 -7 28z m-13 -55 c-8 -15 -11 -15 -28 4
+  -16 18 -17 23 -5 30 21 13 45 -13 33 -34z"/>
+  <path d="M40 97 c-16 -8 -25 -21 -26 -38 0 -13 -4 -31 -9 -38 -6 -11 -4 -13 9
+  -8 10 4 26 7 36 7 10 0 29 14 41 32 20 27 20 31 5 25 -25 -10 -40 1 -25 19 14
+  17 2 18 -31 1z m20 -32 c10 -12 10 -19 2 -27 -15 -15 -43 8 -35 28 7 18 17 18
+  33 -1z"
+  fill={active ? "white" : "black"}/>
+  </g>
+</svg>
+)
+
 export const DeleteIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"

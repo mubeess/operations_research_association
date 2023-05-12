@@ -14,6 +14,7 @@ function NavLink({ label, Icon, route,onClick }: NavLinkProps) {
       className={`nav_link ${location.pathname == route ? "active" : null}`}
     >
       <Icon />
+      
       <span
         style={{
           color: location.pathname == route ? "white" : "black",
