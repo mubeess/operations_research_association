@@ -20,6 +20,7 @@ import {
 import { useState } from "react";
 import Loading from "../../../components/Loading";
 import Alert from "../../../components/Alert";
+import Error from '../components/Error'
 
 
 function Overview({gotoPage}) {
@@ -29,6 +30,8 @@ function Overview({gotoPage}) {
   const [alertMsg, setAlert] = useState("");
   const [checker, setChecker] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [isError, setIsError] = useState(false)
+  const [errorMsg, setErrorMsg] = useState('')
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -183,9 +186,11 @@ function Overview({gotoPage}) {
         </span>
       </div>
 
+      {isError && <Error message={errorMsg} callback={()=>{setIsError(false)}}/>}
+
       <Button
         disabled={!checker || isLoading}
-        onClick={() => {
+        onClick={async () => {
           setIsLoading(true)
           let newPersonal = { ...data.userDetail.personalDetails };
           newPersonal.passport = {
@@ -199,13 +204,14 @@ function Overview({gotoPage}) {
             membershipCat: data.userDetail.membership,
           };
           // console.log(data.user.user.token);
-          query({
-            method: "POST",
-            url: "/users/application",
-            bodyData,
-            token: data.user.user.token,
-          }).then((response) => {
-            setIsLoading(false)
+          try {
+            const response = await query({
+              method: "POST",
+              url: "/users/application",
+              bodyData,
+              token: data.user.user.token,
+            });
+            setIsLoading(false);
             if (response.success) {
               login({
                 email: data.user.user.email,
@@ -213,11 +219,18 @@ function Overview({gotoPage}) {
               });
               // navigate("/dashboard");
             }
-            if (response.data.message === 'Please authenticate'){
-              console.log(response)
-               navigate("/");
+            setIsError(true);
+            setErrorMsg("Please make sure you fill out all fields");
+            if (response.data.message === "Please authenticate") {
+              console.log(response);
+              navigate("/");
             }
-          })
+            // console.log(response);
+          } catch (error) {
+            console.log(error);
+            // Handle error
+          }
+
           
         }}
         style={{

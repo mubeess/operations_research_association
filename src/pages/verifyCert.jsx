@@ -48,6 +48,10 @@ function VerifyCert() {
         content={() => certificateRef.current}
       />
       {/* {data.paid&& <Certificate data={data} ref={certificateRef} />} */}
+
+      <div className='py-10 px-6 shadow-lg rounded-sm'>
+        Certificate verification coming up soon, please bear with the technical team
+      </div>
       
     </div>
    
