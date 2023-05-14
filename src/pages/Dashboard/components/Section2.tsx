@@ -43,7 +43,6 @@ function Section2() {
   const formik = useFormik({
     initialValues,
     onSubmit: (val) => {
-      console.log(val)
       setLoading(true);
 
       dispatch(
@@ -125,10 +124,10 @@ function Section2() {
                               <AddButton
                                 onClick={() =>
                                   arrayHelpers.push({
-                                    institution: "o",
-                                    from: "2",
-                                    to: "2",
-                                    qualificationObtained: "2",
+                                    institution: "",
+                                    from: "",
+                                    to: "",
+                                    qualificationObtained: "",
                                   })
                                 }
                               />
