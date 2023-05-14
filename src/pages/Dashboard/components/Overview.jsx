@@ -23,9 +23,13 @@ import Alert from "../../../components/Alert";
 
 
 function Overview({gotoPage}) {
+
   const data = useSelector((state) => state);
   const [loading, setLoading] = useState(false);
   const [alertMsg, setAlert] = useState("");
+  const [checker, setChecker] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -91,17 +95,19 @@ function Overview({gotoPage}) {
 
   return (
     <div className="overview-container">
+
       <Loading loading={loading} />
       <Alert text={alertMsg} />
       <Header text="Summary Review" />
+
       <div className="review-1">
         <div className="personal-rev">
           <Section1 gotoPage={()=>gotoPage(1)} overview />
         </div>
-        <div className="passport-rev">
+        {/* <div className="passport-rev">
           <img src={Passport} />
           <EditButton/>
-        </div>
+        </div> */}
       </div>
       <Header
         style={{ marginBottom: 20 }}
@@ -168,15 +174,19 @@ function Overview({gotoPage}) {
 
         <EditButton onClick={()=>gotoPage(2)}/>
       </div>
+
       <div className="agree">
-        <input type="checkbox" />
+        <input type="checkbox" checked={checker} onChange={()=> setChecker(!checker)}/>
         <span className="highlight">
           By clicking on submit you agree that all information provided are
           correct
         </span>
       </div>
+
       <Button
+        disabled={!checker || isLoading}
         onClick={() => {
+          setIsLoading(true)
           let newPersonal = { ...data.userDetail.personalDetails };
           newPersonal.passport = {
             secureUrl: "none",
@@ -188,13 +198,14 @@ function Overview({gotoPage}) {
             supportingDoc: data.userDetail.supportingDocs,
             membershipCat: data.userDetail.membership,
           };
-          console.log(data.user.user.token);
+          // console.log(data.user.user.token);
           query({
             method: "POST",
             url: "/users/application",
             bodyData,
             token: data.user.user.token,
           }).then((response) => {
+            setIsLoading(false)
             if (response.success) {
               login({
                 email: data.user.user.email,
@@ -202,13 +213,18 @@ function Overview({gotoPage}) {
               });
               // navigate("/dashboard");
             }
-          });
+            if (response.data.message === 'Please authenticate'){
+              console.log(response)
+               navigate("/");
+            }
+          })
+          
         }}
         style={{
           width: 200,
           marginTop: 10,
         }}
-        label="Submit"
+        label={!isLoading ? "Submit" : "Loading ...."}
       />
     </div>
   );

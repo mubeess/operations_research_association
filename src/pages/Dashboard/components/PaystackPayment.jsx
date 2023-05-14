@@ -56,7 +56,7 @@ export default function PaystackPayment() {
     });
     setLoading(false);
     setAlert("Payment Success");
-    console.log(response);
+    // console.log(response);
     setTimeout(() => {
       setAlert("");
     }, 3000);
@@ -114,13 +114,12 @@ export default function PaystackPayment() {
 
   const onSuccess = (reference) => {
     // Implementation for whatever you want to do with reference and after success call.
-    console.log(reference);
+    // console.log(reference);
     const bodyData = {
-      cost: amount * 100,
+      cost: amountToPay * year,
       duration: year,
       transactionId: reference.reference,
     };
-    console.log(bodyData);
     query({
       method: "POST",
       url: "/certificates",
@@ -139,7 +138,7 @@ export default function PaystackPayment() {
   // you can call this function anything
   const onClose = () => {
     // implementation for  whatever you want to do when the Paystack dialog closed.
-    console.log(data);
+    // console.log(data);
   };
   const initializePayment = usePaystackPayment(config);
   return (
@@ -153,7 +152,6 @@ export default function PaystackPayment() {
         onChange={(val) => {
           setAmount(val.target.value * amountToPay);
           setYear(val.target.value * 1);
-          console.log(val.target.value * 1);
         }}
         options={["1", "2", "3", "4", "5"]}
       />
@@ -167,7 +165,7 @@ export default function PaystackPayment() {
             data.user.user.membership == undefined||
             data.user.user.status=='Pending'
           ) {
-            console.log(data);
+            // console.log(data);
             alert("please register for membership before payment");
             return;
           }

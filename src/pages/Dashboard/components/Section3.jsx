@@ -21,12 +21,6 @@ function Section3({ gotoNext }) {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
-  const qualificationSchema = Yup.object().shape({
-    institution: Yup.string().required('Institution Attend is required'),
-    from: Yup.date().required('From date is required'),
-    to: Yup.date().required('To date is required'),
-    qualificationObtained: Yup.string().required('Qualification Obtained is required'),
-  });
 
   const initialValues = {
     documents: [
@@ -49,9 +43,7 @@ function Section3({ gotoNext }) {
   };
   const formik = useFormik({
     initialValues,
-    validationSchema: Yup.array().of(qualificationSchema),
     onSubmit: (val) => {
-      console.log(val, "-----");
       dispatch(
         setSupportingDocs({
           supportingDocs: val.documents,
@@ -197,7 +189,6 @@ function Section3({ gotoNext }) {
                                 const files = e.target.files;
                                 files?.length &&
                                   formData.append("file", files[0]);
-                                console.log(files[0]);
                                 setLoading(true);
                                 // const response= await query({url:'/file',method:'POST',bodyData:formData})
                                 fetch("https://oridsan.fly.dev/api/v1/file", {

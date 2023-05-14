@@ -31,6 +31,7 @@ function Section1({ overview = false,gotoNext,gotoPage }) {
     gender: "",
     phone: user?.personalDetails?.phone,
     state: "",
+    zone: 'zone'
   };
   const formik = useFormik({
     initialValues,

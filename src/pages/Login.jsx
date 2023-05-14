@@ -19,6 +19,8 @@ import {
   setPersonalDetails,
   setSupportingDocs,
 } from "../redux/user/userDetailSlice";
+
+
 function Login() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -54,7 +56,7 @@ function Login() {
           response.data.data.transactionHistory.certificates,
           response.data.data.transactionHistory.events
         );
-        console.log(response.data);
+        // console.log(response.data);
         dispatch(
           setUser({
             user: {

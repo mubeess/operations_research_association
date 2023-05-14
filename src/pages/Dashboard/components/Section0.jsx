@@ -80,7 +80,7 @@ function Section0({ gotoNext }) {
               }) }
             </ol>
 
-            <p>{`Price: N${selected[0].price} - $${MoneyXchange(selected[0].price)}`}</p>
+            <p>{`Price: N${selected[0].price} - $${Math.ceil(MoneyXchange(selected[0].price))}`}</p>
 
           </div>
         )}
