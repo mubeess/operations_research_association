@@ -79,7 +79,7 @@ const Certificate = React.forwardRef(({data}, ref) => {
                 <span>( Dr Umar Muhammad Modibbo)</span>
                 <Header text="President"/>
             </div>
-            <QRCode value={baseUrl`verify/:${data.id}`} />
+            <QRCode value={`${baseUrl}verify/:${data.id}`} />
             <div className="sign">
                 <img src={Sign}/>
                 <span>( Dr KelvinMoses, CNMS, PhD)</span>
