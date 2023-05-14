@@ -57,33 +57,15 @@ function FinalStaus() {
           <div className="mem-bg">
             <img src={Logo} />
           </div>
-          <div className="main-detal">
-            <div className="fields">
-              <span className="label-name">Name</span>
-              <span className="label-value">
-                {data.user.user.firstName} {data.user.user.lastName}
-              </span>
-            </div>
-            <div className="fields">
-              <span className="label-name">Category</span>
-              <span className="label-value">{data.user.user.membership}</span>
-            </div>
-            <div className="fields">
-              <span className="label-name">State</span>
-              <span className="label-value">
-                {data.userDetail.personalDetails?.state}
-              </span>
-            </div>
-            <div className="fields">
-              <span className="label-name">Phone Number</span>
-              <span className="label-value">
-                {data.userDetail.personalDetails?.phone}
-              </span>
-            </div>
-            <div className="fields">
-              <span className="label-name">Mail</span>
-              <span className="label-value">{data.user.user.email}</span>
-            </div>
+
+          <div className="pl-[20px] h-[100%] flex flex-col justify-between py-6">
+            <ContainerRow title="Name" desc={`${data.user.user.firstName} ${data.user.user.lastName}`}/>
+            <ContainerRow title="Category" desc={data?.user?.user?.membership ?? ''}/>
+            <ContainerRow title="State" desc={data.userDetail.personalDetails?.state ?? ''}/>
+            <ContainerRow title="Phone Number" desc={data.userDetail.personalDetails?.phone ?? ''}/>
+            <ContainerRow title="Email" desc={data.user.user.email ?? ''}/>
+
+
           </div>
           <img
             id="passport"
@@ -99,4 +81,16 @@ function FinalStaus() {
   );
 }
 
-export default FinalStaus;
+
+
+
+const ContainerRow = ({title, desc}: {title:string, desc:string}) => {
+  return (
+    <div className="flex flex-row text-[13px] gap-6">
+      <p>{title}:</p>
+      <p>{desc}</p>
+    </div>
+  )
+}
+
+export default FinalStaus

@@ -9,6 +9,7 @@ import Payment from "./pages/Dashboard/Payment";
 import CertificatePage from "./pages/Dashboard/CertificatePage";
 import Seminars from "./pages/Dashboard/Seminars";
 import Verify from "./pages/Verify";
+import VerifyCert from './pages/verifyCert'
 
 export default function App() {
   return (
@@ -16,6 +17,8 @@ export default function App() {
       <Route element={<Login />} path="/" />
       <Route element={<SignUp />} path="/signup" />
       <Route element={<Verify/>} path="/verify/:token"/>
+      <Route element={<VerifyCert/>} path="/verify-certificate/:token"/>
+
       <Route path="dashboard" element={<LayOut />}>
         <Route index element={<Home />} />
         <Route path="payment" element={<Payment />} />

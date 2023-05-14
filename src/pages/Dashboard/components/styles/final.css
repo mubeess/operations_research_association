@@ -79,12 +79,14 @@
   padding-left: 20px;
   padding-right: 20px;
   margin-top: 20px;
+  font-size: 12px;
 }
 .status .status-val {
   font-weight: bold;
+  font-size: 12px;
 }
 .status span {
-  font-size: 18px;
+  font-size: 12px;
 }
 .membership-number a {
   margin-left: auto;
@@ -99,6 +101,7 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
+  /* font-size: 12px; */
 }
 
 .main-status .status {
@@ -167,6 +170,7 @@
       display: flex;
       justify-content: space-between;
       margin-top:10px;
+     
     }
     .fields span {
       font-size: 15px;

@@ -7,6 +7,10 @@ import Certify from "../../../assets/Images/cert.png";
 import Bg from '../../../assets/Images/or-bg.png'
 import { Header } from "../../../components/Common";
 import convertDate from "../../../helpers/convertDate";
+import QRCode  from 'qrcode.react';
+
+const baseUrl = 'https://operations-research-association-git-main-mubeess.vercel.app/'
+
 
 
 const Certificate = React.forwardRef(({data}, ref) => {
@@ -16,7 +20,7 @@ const Certificate = React.forwardRef(({data}, ref) => {
  },[])
 
   return (
-    <div ref={ref} className="certificate-container">
+    <div ref={ref} className="certificate-container text-[13px]">
       <div className="cert-bar"></div>
       <div className="main-cert">
         <img id="bg" src={Bg}/>
@@ -36,7 +40,8 @@ const Certificate = React.forwardRef(({data}, ref) => {
               position: "absolute",
               right: 0,
               marginRight: 30,
-              color: data.paid ? "var(--primary)": 'red'
+              color: data.paid ? "var(--primary)": 'red',
+              fontSize: '14px'
             }}
             text={`NO:${data.cert.certificateNumber}`}
           />
@@ -45,9 +50,9 @@ const Certificate = React.forwardRef(({data}, ref) => {
           <Header text={`${data.firstName} ${data.lastName}`} />
         </div>
         
-        <div className="other-txt">
+        <div className="other-txt text-[12px]">
           <span>was on this day</span>
-          <span className="txt-dashed">{`${convertDate(data.cert.createdAt)}`}</span>
+          <span className="txt-dashed ">{`${convertDate(data.cert.createdAt)}`}</span>
           <span>admitted to the grade of</span>
           <span className="txt-dashed">{`${data.membership}`}</span>
         </div>
@@ -61,11 +66,11 @@ const Certificate = React.forwardRef(({data}, ref) => {
         </div>
         <div className="cert-val">
             <span className="label">MEMBERSHIP NO:</span>
-            <Header text={`${data.membershipNumber}`}/>
+            <Header style={{ fontSize: '14px'}} text={`${data.membershipNumber}`}/>
         </div>
         <div className="cert-val">
             <span className="label">Validity:</span>
-            <Header text={`${data.cert.validity}`}/>
+            <Header style={{ fontSize: '14px'}} text={`${data.cert.validity}`}/>
         </div>
 
         <div className="sign-qr">
@@ -74,7 +79,7 @@ const Certificate = React.forwardRef(({data}, ref) => {
                 <span>( Dr Umar Muhammad Modibbo)</span>
                 <Header text="President"/>
             </div>
-            <img src={Qr} alt=""/>
+            <QRCode value={baseUrl`verify/:${data.id}`} />
             <div className="sign">
                 <img src={Sign}/>
                 <span>( Dr KelvinMoses, CNMS, PhD)</span>
