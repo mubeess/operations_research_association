@@ -16,7 +16,7 @@ const baseUrl = 'https://operations-research-association-git-main-mubeess.vercel
 const Certificate = React.forwardRef(({data}, ref) => {
 
  useEffect(()=>{
-//  console.log(data,'cert')
+ console.log(data,'cert')
  },[])
 
   return (
@@ -79,7 +79,7 @@ const Certificate = React.forwardRef(({data}, ref) => {
                 <span>( Dr Umar Muhammad Modibbo)</span>
                 <Header text="President"/>
             </div>
-            <QRCode value={`${baseUrl}verify-certificate/:${data.email}`} />
+            <QRCode value={`${baseUrl}verify-certificate/${data._id}`} />
             <div className="sign">
                 <img src={Sign}/>
                 <span>( Dr KelvinMoses, CNMS, PhD)</span>

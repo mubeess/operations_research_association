@@ -60,6 +60,7 @@ function Login() {
         dispatch(
           setUser({
             user: {
+              _id: response.data.data.data._id,
               isLoggedIn: true,
               firstName: response.data.data.data.personalDetails.firstName,
               email: response.data.data.data.personalDetails.email,

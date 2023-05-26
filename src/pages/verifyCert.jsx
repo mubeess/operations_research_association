@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Certificate from './Dashboard/components/Certificate'
 import Button from '../components/Button';
 import ReactToPrint from 'react-to-print';
@@ -12,26 +12,40 @@ function VerifyCert() {
   console.log(params.token)
 
   const certificateRef = React.useRef();
+  const [data, setData] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
 
 
-  // async function verifyUser() {
-  //   const response = await query({
-  //     method: "POST",
-  //     url: `/users/email-verification/${params.token}`,
-  //     bodyData: {},
-  //   });
-  //   setLoading(false);
-  //   if (response?.success) {
-  //     setSuccess(true);
-  //     setAlert(response.data.message);
-  //   } else {
-  //     setSuccess(false);
-  //     setAlert("Something went wrong!");
-  //   }
-  // }
-  // useEffect(() => {
-  //   verifyUser();
-  // }, []);
+  function verifyUser() {
+    setIsLoading(true)
+    query({
+      method: "GET",
+      url: `/users/${params.token}`,
+      bodyData: {},
+    }).then(val => {
+      console.log({
+        ...val.data.data.user,
+        cert: val.data.data.certificate
+      })
+
+      setIsLoading(false)
+      setData({
+        ...val.data.data.user,
+        cert: val.data.data.certificate,
+        firstName: val.data.data.user.personalDetails.firstName,
+        lastName: val.data.data.user.personalDetails.lastName,
+        membership: val.data.data.user.membershipCat,
+        paid: val.data.data.user.certificateStatus
+      })
+    }).catch(err => {
+      console.log(err)
+    })
+    // console.log(response.data.data)
+
+  }
+  useEffect(() => {
+    verifyUser();
+  }, []);
 
   return (
     <div>
@@ -47,11 +61,11 @@ function VerifyCert() {
 
         content={() => certificateRef.current}
       />
-      {/* {data.paid&& <Certificate data={data} ref={certificateRef} />} */}
+      {(!isLoading) && <Certificate data={data} ref={certificateRef} />}
 
-      <div className='py-10 px-6 shadow-lg rounded-sm'>
-        Certificate verification coming up soon, please bear with the technical team
-      </div>
+      {isLoading && <div className='py-10 px-6 shadow-lg rounded-sm'>
+        LOADING...
+      </div> }
       
     </div>
    
