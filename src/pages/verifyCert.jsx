@@ -23,10 +23,6 @@ function VerifyCert() {
       url: `/users/${params.token}`,
       bodyData: {},
     }).then(val => {
-      console.log({
-        ...val.data.data.user,
-        cert: val.data.data.certificate
-      })
 
       setIsLoading(false)
       setData({
