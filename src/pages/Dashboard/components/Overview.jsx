@@ -197,13 +197,13 @@ function Overview({gotoPage}) {
             secureUrl: "none",
             publicID: "none",
           };
+          delete newPersonal.title
           const bodyData = {
             personalDetails: newPersonal,
             educationalQualification: data.userDetail.educationalQualification,
             supportingDoc: data.userDetail.supportingDocs,
             membershipCat: data.userDetail.membership,
           };
-          // console.log(data.user.user.token);
           try {
             const response = await query({
               method: "POST",

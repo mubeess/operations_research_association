@@ -34,10 +34,10 @@ function Section3({ gotoNext }) {
     ],
     qualification: [
       {
-        institution: "Mau",
+        institution: "",
         from: "2021",
         to: "2022",
-        qualificationObtained: "Btech",
+        qualificationObtained: "",
       },
     ],
   };
